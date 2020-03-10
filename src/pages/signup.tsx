@@ -9,11 +9,13 @@ const Signup = () => (
       sx={{
         py: 5,
         alignItems: "center",
-        justifyContent: "center"
+        justifyContent: "center",
+        width: "100%"
       }}
     >
       <Box
         sx={{
+          width: "100%",
           maxWidth: "measure"
         }}
       >

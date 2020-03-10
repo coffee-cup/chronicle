@@ -116,6 +116,8 @@ const theme: Theme = {
     header: {
       ...baseLink,
       textDecoration: "none",
+      px: 3,
+      py: 2,
 
       "&:hover": {
         ...baseLink["&:hover"],

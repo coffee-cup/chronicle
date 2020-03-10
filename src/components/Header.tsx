@@ -28,8 +28,8 @@ const Nav = () => (
     <NavLink as={Link} href="/">
       home
     </NavLink>
-    <NavLink as={Link} href="/about">
-      about
+    <NavLink as={Link} href="/faq">
+      faq
     </NavLink>
     <NavLink as={Link} href="/login">
       login
@@ -41,7 +41,7 @@ const Header: React.FC<{ home?: string }> = props => (
   <StyledHeader>
     <Logo>
       <Link to={props.home || "/"} variant="header">
-        Chronicle
+        •
       </Link>
     </Logo>
     <Nav />

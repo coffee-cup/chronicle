@@ -9,12 +9,14 @@ const Login = () => (
       sx={{
         py: 5,
         alignItems: "center",
-        justifyContent: "center"
+        justifyContent: "center",
+        width: "100%"
       }}
     >
       <Box
         sx={{
-          maxWidth: "measure"
+          width: "100%",
+          maxWidth: [null, "measure"]
         }}
       >
         <Styled.h1>Login to Chronicle</Styled.h1>

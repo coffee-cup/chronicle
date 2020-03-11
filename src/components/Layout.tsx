@@ -5,6 +5,9 @@ import Header from "./Header";
 import Footer from "./Footer";
 import theme from "../styles";
 import SEO from "./SEO";
+import useUser from "../hooks/use-user";
+
+import "../firebase";
 
 export interface Props {
   title?: string;

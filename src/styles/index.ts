@@ -60,7 +60,8 @@ const theme: Theme = {
     secondary: "white",
     accent: "#04e628",
     muted: "#eff0f6",
-    grey: "#a2a2a2"
+    grey: "#a2a2a2",
+    error: "red"
   },
 
   breakpoints: ["40em", "52em", "64em"],
@@ -163,6 +164,10 @@ const theme: Theme = {
 
       "&:focus": {
         borderColor: "accent"
+      },
+
+      "&.error": {
+        borderColor: "error"
       }
     },
     slider: {

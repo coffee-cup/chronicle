@@ -1,51 +1,42 @@
 /** @jsx jsx */
-import styled from "@emotion/styled";
-import css from "@styled-system/css";
 import * as React from "react";
 import Link from "./Link";
-import { jsx, Flex, NavLink } from "theme-ui";
+import { jsx, Spinner, Flex, Box, NavLink } from "theme-ui";
+import useUser from "../hooks/use-user";
 
-const StyledHeader = styled.header(
-  css({
-    color: "text",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "space-between",
-    pt: 3
-  })
-);
+const Nav = () => {
+  const { user, initialising } = useUser();
 
-const Logo = styled.span(
-  css({
-    fontSize: 4,
-    fontWeight: "bold",
-    fontFamily: "heading"
-  })
-);
-
-const Nav = () => (
-  <Flex as="nav">
-    <NavLink as={Link} href="/">
-      home
-    </NavLink>
-    <NavLink as={Link} href="/faq">
-      faq
-    </NavLink>
-    <NavLink as={Link} href="/login">
-      login
-    </NavLink>
-  </Flex>
-);
+  return (
+    <Flex as="nav">
+      <NavLink as={Link} href="/">
+        home
+      </NavLink>
+      <NavLink as={Link} href="/faq">
+        faq
+      </NavLink>
+      <NavLink as={Link} href={user == null ? "/login" : "/me"}>
+        {initialising ? <Spinner size={22} /> : user == null ? "login" : "me"}
+      </NavLink>
+    </Flex>
+  );
+};
 
 const Header: React.FC<{ home?: string }> = props => (
-  <StyledHeader>
-    <Logo>
+  <Flex
+    sx={{
+      py: 3,
+      alignItems: "center",
+      justifyContent: "space-between",
+    }}
+  >
+    <Box sx={{ fontSize: 4, fontWeight: "bold", fontFamily: "heading" }}>
       <Link to={props.home || "/"} variant="header">
         •
       </Link>
-    </Logo>
+    </Box>
     <Nav />
-  </StyledHeader>
+  </Flex>
 );
 
 export default Header;

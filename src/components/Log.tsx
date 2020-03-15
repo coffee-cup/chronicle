@@ -15,9 +15,21 @@ const Log: React.FC<Props> = () => {
 
   return (
     <Box as="form" onSubmit={e => e.preventDefault()}>
-      <Flex>
-        <Box sx={{ flexGrow: 1, pr: 3 }}>
-          <Box sx={{ mb: 2 }}>
+      <Flex
+        sx={{
+          flexWrap: ["wrap", "nowrap"],
+          flexDirection: ["column-reverse", "row"],
+        }}
+      >
+        <Box
+          sx={{
+            display: ["block", "flex"],
+            flexGrow: 1,
+            pr: [0, 3],
+            width: ["100%"],
+          }}
+        >
+          <Box sx={{ mb: 2, flexGrow: 1 }}>
             <Input
               placeholder={`What did you do on ${format(
                 date,
@@ -28,11 +40,11 @@ const Log: React.FC<Props> = () => {
           </Box>
 
           <Box sx={{ mb: 2 }}>
-            <Button variant="logButton">Save</Button>
+            <Button sx={{ width: "100%" }}>Submit</Button>
           </Box>
         </Box>
 
-        <Box sx={{ width: "400px" }}>
+        <Box sx={{ width: ["100%", "400px"] }}>
           <Calendar initialValue={date} onDateChanged={dateChanged} />
         </Box>
       </Flex>

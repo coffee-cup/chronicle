@@ -27,6 +27,7 @@ const Calendar: React.FC<Props> = props => {
     <Box
       sx={{
         textAlign: "right",
+        pb: 3,
       }}
       className="calendar"
     >
@@ -36,7 +37,11 @@ const Calendar: React.FC<Props> = props => {
         locale={enGB}
       />
 
-      <Button variant="subtle" sx={{ mt: 2 }} onClick={setToday}>
+      <Button
+        variant="subtle"
+        sx={{ mt: 2, display: ["none", "inline-block"] }}
+        onClick={setToday}
+      >
         today
       </Button>
     </Box>

@@ -100,7 +100,7 @@ const theme: Theme = {
   fontSizes: [12, 14, 16, 20, 24, 32, 48, 64, 96],
 
   sizes: {
-    container: "1600px",
+    container: "72rem",
     measure: "32em",
     header: "6rem",
   },
@@ -121,10 +121,6 @@ const theme: Theme = {
         bg: "black",
         color: "white",
       },
-    },
-    logButton: {
-      ...baseButton,
-      minWidth: "initial",
     },
     subtle: {
       ...baseButton,

@@ -26,12 +26,12 @@ const Layout: React.FC<Props> = props => {
             mx: "auto",
             my: 0,
             px: [3, 4],
-            py: 0
+            py: 0,
           }}
         >
           <Box
             sx={{
-              minHeight: "100vh"
+              minHeight: "100vh",
             }}
           >
             <Header />

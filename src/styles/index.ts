@@ -1,10 +1,11 @@
 import { system } from "@theme-ui/presets";
 import { Theme } from "theme-ui";
+import { boxShadow } from "styled-system";
 
 const heading = {
   fontFamily: "heading",
   lineHeight: "heading",
-  fontWeight: "heading"
+  fontWeight: "heading",
 };
 
 const font = [
@@ -19,7 +20,7 @@ const font = [
   "sans-serif",
   "Apple Color Emoji",
   "Segoe UI Emoji",
-  "Segoe UI Symbol"
+  "Segoe UI Symbol",
 ].join(",");
 
 const baseLink = {
@@ -30,8 +31,21 @@ const baseLink = {
 
   "&:hover,&:focus": {
     color: "text",
-    bg: "accent"
-  }
+    bg: "accent",
+  },
+};
+
+const baseInput = {
+  borderRadius: 0,
+  borderWidth: 2,
+
+  "&:focus": {
+    borderColor: "accent",
+  },
+
+  "&.error": {
+    borderColor: "error",
+  },
 };
 
 const baseButton = {
@@ -47,8 +61,8 @@ const baseButton = {
   "&:hover": {
     color: "primary",
     bg: "secondary",
-    boxShadow: "4px 4px 0px 0px black"
-  }
+    boxShadow: "4px 4px 0px 0px black",
+  },
 };
 
 const theme: Theme = {
@@ -60,8 +74,11 @@ const theme: Theme = {
     secondary: "white",
     accent: "#04e628",
     muted: "#eff0f6",
-    grey: "#a2a2a2",
-    error: "red"
+    grey: {
+      200: "#dfdfdf",
+      500: "#a2a2a2",
+    },
+    error: "red",
   },
 
   breakpoints: ["40em", "52em", "64em"],
@@ -69,7 +86,7 @@ const theme: Theme = {
   fontWeights: {
     body: 400,
     heading: 700,
-    bold: 700
+    bold: 700,
   },
 
   space: [0, 4, 8, 16, 32, 64, 128, 256, 512],
@@ -77,20 +94,20 @@ const theme: Theme = {
   fonts: {
     body: font,
     heading: `"Montserrat", ${font}`,
-    monospace: "Consolas, Liberation Mono, Menlo, Courier, monospace"
+    monospace: "Consolas, Liberation Mono, Menlo, Courier, monospace",
   },
 
   fontSizes: [12, 14, 16, 20, 24, 32, 48, 64, 96],
 
   sizes: {
-    container: "48em",
+    container: "1600px",
     measure: "32em",
-    header: "6rem"
+    header: "6rem",
   },
 
   lineHeights: {
     body: 1.5,
-    heading: 1.125
+    heading: 1.125,
   },
 
   buttons: {
@@ -102,9 +119,25 @@ const theme: Theme = {
 
       "&:hover": {
         bg: "black",
-        color: "white"
-      }
-    }
+        color: "white",
+      },
+    },
+    logButton: {
+      ...baseButton,
+      minWidth: "initial",
+    },
+    subtle: {
+      ...baseButton,
+      color: "text",
+      bg: "grey.200",
+      py: 1,
+      borderColor: "grey.200",
+
+      "&:hover": {
+        borderColor: "text",
+        boxShadow: "none",
+      },
+    },
   },
 
   links: {
@@ -112,7 +145,7 @@ const theme: Theme = {
       ...baseButton,
       px: 3,
       textDecoration: "none",
-      display: "inline-block"
+      display: "inline-block",
     },
     header: {
       ...baseLink,
@@ -123,8 +156,8 @@ const theme: Theme = {
       "&:hover": {
         ...baseLink["&:hover"],
         color: "text",
-        bg: "accent"
-      }
+        bg: "accent",
+      },
     },
     mdxItem: {
       ...baseLink,
@@ -132,8 +165,8 @@ const theme: Theme = {
 
       "&:hover": {
         ...baseLink["&:hover"],
-        bg: "accent"
-      }
+        bg: "accent",
+      },
     },
     nav: {
       ...baseLink,
@@ -143,36 +176,27 @@ const theme: Theme = {
       textDecoration: "none",
 
       "&:hover": {
-        ...baseLink["&:hover"]
-      }
+        ...baseLink["&:hover"],
+      },
     },
     empty: {
       ...baseLink,
       textDecoration: "none",
 
       "&:hover": {
-        ...baseLink["&:hover"]
-      }
-    }
+        ...baseLink["&:hover"],
+      },
+    },
   },
 
   forms: {
-    input: {
-      mt: 1,
-      borderRadius: 0,
-      borderWidth: 2,
-
-      "&:focus": {
-        borderColor: "accent"
-      },
-
-      "&.error": {
-        borderColor: "error"
-      }
+    input: baseInput,
+    logInput: {
+      ...baseInput,
     },
     slider: {
-      color: "primary"
-    }
+      color: "primary",
+    },
   },
 
   text: {
@@ -182,8 +206,8 @@ const theme: Theme = {
       fontSize: [5, 6],
       fontWeight: "heading",
       letterSpacing: "-0.03em",
-      mt: 3
-    }
+      mt: 3,
+    },
   },
 
   styles: {
@@ -191,38 +215,38 @@ const theme: Theme = {
     root: {
       fontFamily: "body",
       lineHeight: "body",
-      fontWeight: "body"
+      fontWeight: "body",
     },
     h1: {
-      variant: "textStyles.display"
+      variant: "textStyles.display",
     },
     h2: {
       variant: "textStyles.heading",
-      fontSize: 5
+      fontSize: 5,
     },
     h3: {
       variant: "textStyles.heading",
-      fontSize: 4
+      fontSize: 4,
     },
     h4: {
       variant: "textStyles.heading",
-      fontSize: 3
+      fontSize: 3,
     },
     h5: {
       variant: "textStyles.heading",
-      fontSize: 2
+      fontSize: 2,
     },
     h6: {
       variant: "textStyles.heading",
-      fontSize: 1
+      fontSize: 1,
     },
     a: baseLink,
     p: {
       code: {
         color: "text",
         p: "2px",
-        borderRadius: "4px"
-      }
+        borderRadius: "4px",
+      },
     },
     pre: {
       fontFamily: "monospace",
@@ -232,15 +256,15 @@ const theme: Theme = {
       bg: "muted",
       overflow: "auto",
       code: {
-        color: "inherit"
-      }
+        color: "inherit",
+      },
     },
     code: {
       fontFamily: "monospace",
       backgroundColor: "muted",
       p: 2,
       borderRadius: "4px",
-      fontSize: 2
+      fontSize: 2,
     },
     blockquote: {
       mt: 0,
@@ -249,15 +273,15 @@ const theme: Theme = {
       pr: 0,
       pl: 3,
       borderLeft: "solid 4px hsla(0,0%,0%,0.13)",
-      color: "hsla(0,0%,0%,0.53)"
+      color: "hsla(0,0%,0%,0.53)",
     },
     ul: {
-      pl: 0
+      pl: 0,
     },
     li: {
-      pb: 1
-    }
-  }
+      pb: 1,
+    },
+  },
 };
 
 export default theme;

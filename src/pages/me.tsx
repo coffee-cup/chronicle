@@ -6,7 +6,7 @@ import useUser from "../hooks/use-user";
 import { useRouter } from "next/router";
 
 const Me = () => {
-  const { user, initialising, logout } = useUser({ authRequired: true });
+  const { user, initialising, logout } = useUser();
   const router = useRouter();
 
   return (

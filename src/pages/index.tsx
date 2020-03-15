@@ -8,13 +8,13 @@ const Home = () => (
     <div className="home">
       <Box
         sx={{
-          pt: 6
+          pt: 6,
         }}
       >
         <Styled.h1>Bullshit free personal logging</Styled.h1>
 
-        <Link href="/login" variant="button">
-          Get Started
+        <Link href="/demo" variant="button">
+          Demo
         </Link>
       </Box>
     </div>

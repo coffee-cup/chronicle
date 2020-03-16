@@ -1,6 +1,5 @@
 import { system } from "@theme-ui/presets";
 import { Theme } from "theme-ui";
-import { boxShadow } from "styled-system";
 
 const heading = {
   fontFamily: "heading",
@@ -72,7 +71,7 @@ const theme: Theme = {
     background: "white",
     primary: "#171717",
     secondary: "white",
-    accent: "#04e628",
+    accent: "#fbba72",
     muted: "#eff0f6",
     grey: {
       200: "#dfdfdf",

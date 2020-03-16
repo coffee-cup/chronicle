@@ -1,11 +1,11 @@
 /** @jsx jsx */
-import { Styled, Button, Grid, Flex, Input, Box, jsx } from "theme-ui";
-import * as React from "react";
-import Calendar from "./Calendar";
 import { format } from "date-fns";
-import { ILog } from "../types";
-import LogItem from "./LogItem";
+import * as React from "react";
+import { Box, Button, Flex, Input, jsx } from "theme-ui";
 import * as uuid from "uuid";
+import { ILog } from "../types";
+import Calendar from "./Calendar";
+import LogItem from "./LogItem";
 
 const LogList: React.FC<{
   logs: ILog[];
@@ -86,7 +86,6 @@ const Log: React.FC<{
           >
             <Box sx={{ mb: 2, flexGrow: 1 }}>
               <Input
-                sx={{ borderRight: 0 }}
                 value={text}
                 placeholder={`What did you do on ${format(
                   date,
@@ -98,7 +97,7 @@ const Log: React.FC<{
             </Box>
 
             <Box sx={{ mb: 2 }}>
-              <Button sx={{ width: "100%" }}>Submit</Button>
+              <Button sx={{ width: "100%", borderLeft: 0 }}>Submit</Button>
             </Box>
           </Box>
 

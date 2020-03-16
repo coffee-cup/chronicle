@@ -1,9 +1,9 @@
 /** @jsx jsx */
-import { enGB } from "date-fns/locale";
 import { isSameDay } from "date-fns";
+import { enGB } from "date-fns/locale";
 import * as React from "react";
 import { DatePickerCalendar } from "react-nice-dates";
-import { jsx, Button, Box } from "theme-ui";
+import { Box, Button, jsx } from "theme-ui";
 
 export interface Props {
   initialValue?: Date;

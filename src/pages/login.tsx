@@ -1,12 +1,12 @@
 /** @jsx jsx */
-import { Styled, jsx, Flex, Button, Box, Label, Input } from "theme-ui";
+import { useRouter } from "next/router";
 import * as React from "react";
+import { useForm } from "react-hook-form";
+import { Box, Button, Flex, Input, jsx, Label, Styled } from "theme-ui";
 import Layout from "../components/Layout";
 import Link from "../components/Link";
-import { useForm } from "react-hook-form";
-import { emailRegex } from "../utils";
 import useUser from "../hooks/use-user";
-import { useRouter } from "next/router";
+import { emailRegex } from "../utils";
 
 interface FormData {
   email: string;

@@ -1,7 +1,7 @@
-import { ILog } from "../types";
-import * as React from "react";
 import { subDays } from "date-fns";
 import { sortBy } from "lodash";
+import * as React from "react";
+import { ILog } from "../types";
 
 export interface DemoState {
   logs: ILog[];

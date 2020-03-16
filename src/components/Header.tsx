@@ -9,8 +9,8 @@ const Nav = () => {
 
   return (
     <Flex as="nav">
-      <NavLink as={Link} href="/">
-        home
+      <NavLink as={Link} href="/demo">
+        demo
       </NavLink>
       <NavLink as={Link} href="/faq">
         faq

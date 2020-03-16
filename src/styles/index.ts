@@ -76,6 +76,7 @@ const theme: Theme = {
     muted: "#eff0f6",
     grey: {
       200: "#dfdfdf",
+      400: "#cecece",
       500: "#a2a2a2",
     },
     error: "red",

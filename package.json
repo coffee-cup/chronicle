@@ -13,6 +13,7 @@
     "@theme-ui/presets": "^0.3.0",
     "date-fns": "^2.11.0",
     "firebase": "^7.10.0",
+    "lodash": "^4.17.15",
     "next": "9.3.0",
     "next-seo": "^4.4.0",
     "react": "16.13.0",
@@ -24,6 +25,7 @@
     "uuid": "^7.0.2"
   },
   "devDependencies": {
+    "@types/lodash": "^4.14.149",
     "@types/next-seo": "^1.10.0",
     "@types/node": "^13.9.0",
     "@types/react": "^16.9.23",

@@ -54,7 +54,7 @@ const Log: React.FC<{
       const newLog: ILog = {
         id: uuid.v4(),
         text,
-        date: new Date().toISOString(),
+        date: date.toISOString(),
       };
       props.createLog(newLog);
       setText("");
@@ -86,6 +86,7 @@ const Log: React.FC<{
           >
             <Box sx={{ mb: 2, flexGrow: 1 }}>
               <Input
+                sx={{ borderRight: 0 }}
                 value={text}
                 placeholder={`What did you do on ${format(
                   date,
@@ -105,7 +106,11 @@ const Log: React.FC<{
         </Box>
 
         <Box sx={{ width: ["100%", "300px", "400px"] }}>
-          <Calendar initialValue={date} onDateChanged={dateChanged} />
+          <Calendar
+            initialValue={date}
+            onDateChanged={dateChanged}
+            highlighted={props.logs.map(l => new Date(l.date))}
+          />
         </Box>
       </Flex>
     </Box>

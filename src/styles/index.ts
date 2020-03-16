@@ -78,6 +78,7 @@ const theme: Theme = {
       200: "#dfdfdf",
       400: "#cecece",
       500: "#a2a2a2",
+      600: "#999999",
     },
     error: "red",
   },

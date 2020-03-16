@@ -1,6 +1,7 @@
 import { ILog } from "../types";
 import * as React from "react";
 import { subDays } from "date-fns";
+import { sortBy } from "lodash";
 
 export interface DemoState {
   logs: ILog[];
@@ -28,7 +29,7 @@ export const DemoProvider: React.FC = props => {
   const [logs, setLogs] = React.useState<ILog[]>(initialLogs);
 
   const createLog = (log: ILog) => {
-    setLogs([log, ...logs]);
+    setLogs(sortBy([log, ...logs], l => new Date(l.date)).reverse());
   };
 
   const value: DemoState = {

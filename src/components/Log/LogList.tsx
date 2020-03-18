@@ -1,16 +1,16 @@
 /** @jsx jsx */
-import { format, getDayOfYear } from "date-fns";
-import { groupBy } from "lodash";
+import { format, getDayOfYear, getYear } from "date-fns";
+import { groupBy, sortBy } from "lodash";
 import * as React from "react";
 import { Box, jsx } from "theme-ui";
-import { ILog } from "../../types";
+import { ILog, KeyedLogs } from "../../types";
 import LogItem from "./LogItem";
 
-const LogGroup: React.FC<{ dayOfYear: string; logs: ILog[] }> = props => {
+const LogGroup: React.FC<{ logs: ILog[] }> = props => {
   const formattedDate = format(props.logs[0].date, "iiii, MMMM do");
 
   return (
-    <Box className={`log-group day-${props.dayOfYear}`} sx={{ pb: 2 }}>
+    <Box className={`log-group`} sx={{ pb: 2 }}>
       <Box
         sx={{
           bg: "muted",
@@ -33,8 +33,14 @@ const LogGroup: React.FC<{ dayOfYear: string; logs: ILog[] }> = props => {
   );
 };
 
-const LogList: React.FC<{ logs: ILog[] }> = props => {
-  const groups = groupBy(props.logs, l => getDayOfYear(l.date));
+const groupByKey = (d: Date): string => `${getDayOfYear(d)}-${getYear(d)}`;
+
+const LogList: React.FC<{ logs: KeyedLogs }> = props => {
+  const groups = groupBy(props.logs, l => groupByKey(l.date));
+  const sortedGroupKeys = sortBy(
+    Object.keys(groups),
+    k => groups[k][0].date,
+  ).reverse();
 
   return (
     <Box
@@ -43,12 +49,8 @@ const LogList: React.FC<{ logs: ILog[] }> = props => {
         py: 3,
       }}
     >
-      {Object.keys(groups).map(dayOfYear => (
-        <LogGroup
-          key={dayOfYear}
-          logs={groups[dayOfYear]}
-          dayOfYear={dayOfYear}
-        />
+      {sortedGroupKeys.map(k => (
+        <LogGroup key={k} logs={groups[k]} />
       ))}
     </Box>
   );

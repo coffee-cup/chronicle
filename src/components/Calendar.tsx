@@ -39,9 +39,11 @@ const Calendar: React.FC<Props> = props => {
   return (
     <Box
       sx={{
-        textAlign: "right",
+        position: "sticky",
+        top: 3,
         pb: 3,
         color: "blue",
+        textAlign: "right",
         ".nice-dates-day": {
           color: "grey.600",
         },

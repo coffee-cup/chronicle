@@ -1,45 +1,55 @@
 import { subDays } from "date-fns";
-import { sortBy } from "lodash";
 import * as React from "react";
-import { ILog } from "../types";
+import * as uuid from "uuid";
+import { ILog, KeyedLogs, LogProtocol } from "../types";
 
-export interface DemoState {
-  logs: ILog[];
-  createLog: (log: ILog) => void;
-}
+const DemoContext = React.createContext<LogProtocol>({} as LogProtocol);
 
-const DemoContext = React.createContext<DemoState>({} as DemoState);
-
-const initialLogs: ILog[] = [
-  {
+const initialLogs: KeyedLogs = {
+  1: {
     id: "1",
     date: new Date(),
     text: "Went to see the swans at Brockwell park",
   },
-  {
+  2: {
     id: "2",
     date: subDays(new Date(), 1),
     text: "This is a log for yesterday",
   },
-  {
+  3: {
     id: "3",
     date: new Date(),
     text: "This is also today",
   },
-];
+};
 
-export const useDemo = (): DemoState => React.useContext(DemoContext);
+export const useDemo = (): LogProtocol => React.useContext(DemoContext);
 
 export const DemoProvider: React.FC = props => {
-  const [logs, setLogs] = React.useState<ILog[]>(initialLogs);
+  const [logs, setLogs] = React.useState<KeyedLogs>(initialLogs);
 
-  const createLog = (log: ILog) => {
-    setLogs(sortBy([log, ...logs], l => new Date(l.date)).reverse());
+  const createLog = (text: string, date: Date) => {
+    const log: ILog = {
+      id: uuid.v4(),
+      text,
+      date,
+    };
+
+    setLogs({
+      ...logs,
+      [log.id]: log,
+    });
   };
 
-  const value: DemoState = {
+  const deleteLog = (id: string) => {
+    delete logs[id];
+    setLogs(logs);
+  };
+
+  const value: LogProtocol = {
     logs,
     createLog,
+    deleteLog,
   };
 
   return (

@@ -2,15 +2,11 @@
 import { format } from "date-fns";
 import * as React from "react";
 import { Box, Button, Flex, Input, jsx } from "theme-ui";
-import * as uuid from "uuid";
-import { ILog } from "../../types";
+import { LogProtocol } from "../../types";
 import Calendar from "../Calendar";
 import LogList from "./LogList";
 
-const Log: React.FC<{
-  logs: ILog[];
-  createLog: (log: ILog) => void;
-}> = props => {
+const Log: React.FC<LogProtocol> = props => {
   const [text, setText] = React.useState("");
   const [date, setDate] = React.useState<Date>(new Date());
 
@@ -22,12 +18,7 @@ const Log: React.FC<{
     e.preventDefault();
 
     if (text !== "") {
-      const newLog: ILog = {
-        id: uuid.v4(),
-        text,
-        date,
-      };
-      props.createLog(newLog);
+      props.createLog(text, date);
       setText("");
     }
   };
@@ -79,7 +70,7 @@ const Log: React.FC<{
           <Calendar
             initialValue={date}
             onDateChanged={dateChanged}
-            highlighted={props.logs.map(l => new Date(l.date))}
+            highlighted={Object.values(props.logs).map(l => new Date(l.date))}
           />
         </Box>
       </Flex>

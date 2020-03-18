@@ -5,14 +5,14 @@ import Log from "../components/Log";
 import { DemoProvider, useDemo } from "../hooks/use-demo";
 
 const Demo = () => {
-  const { logs, createLog } = useDemo();
+  const demoLogs = useDemo();
 
   return (
     <Layout title="Demo">
       <Box className="demo">
         <Styled.h1>Demo</Styled.h1>
 
-        <Log logs={logs} createLog={createLog} />
+        <Log {...demoLogs} />
       </Box>
     </Layout>
   );

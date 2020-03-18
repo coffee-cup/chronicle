@@ -3,38 +3,9 @@ import { format } from "date-fns";
 import * as React from "react";
 import { Box, Button, Flex, Input, jsx } from "theme-ui";
 import * as uuid from "uuid";
-import { ILog } from "../types";
-import Calendar from "./Calendar";
-import LogItem from "./LogItem";
-
-const LogList: React.FC<{
-  logs: ILog[];
-}> = props => {
-  return (
-    <Box
-      className="log-list"
-      sx={{
-        position: "relative",
-      }}
-    >
-      <Box
-        sx={{
-          position: "absolute",
-          width: "2px",
-          bg: "grey.200",
-          zIndex: -1,
-          top: 0,
-          bottom: 0,
-          left: 2,
-        }}
-      />
-
-      {props.logs.map(log => (
-        <LogItem log={log} key={log.id} />
-      ))}
-    </Box>
-  );
-};
+import { ILog } from "../../types";
+import Calendar from "../Calendar";
+import LogList from "./LogList";
 
 const Log: React.FC<{
   logs: ILog[];
@@ -54,7 +25,7 @@ const Log: React.FC<{
       const newLog: ILog = {
         id: uuid.v4(),
         text,
-        date: date.toISOString(),
+        date,
       };
       props.createLog(newLog);
       setText("");

@@ -13,13 +13,18 @@ const DemoContext = React.createContext<DemoState>({} as DemoState);
 const initialLogs: ILog[] = [
   {
     id: "1",
-    date: new Date().toISOString(),
+    date: new Date(),
     text: "Went to see the swans at Brockwell park",
   },
   {
     id: "2",
-    date: subDays(new Date(), 1).toISOString(),
+    date: subDays(new Date(), 1),
     text: "This is a log for yesterday",
+  },
+  {
+    id: "3",
+    date: new Date(),
+    text: "This is also today",
   },
 ];
 

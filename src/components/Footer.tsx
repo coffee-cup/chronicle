@@ -7,15 +7,15 @@ import Link from "./Link";
 const StyledFooter = styled.footer(
   css({
     display: "flex",
-    alignItems: "center"
-  })
+    alignItems: "center",
+  }),
 );
 
 const Footer = () => (
   <StyledFooter>
     <div
       sx={{
-        py: 4
+        py: 4,
       }}
     >
       Created with ♥ by <Link to="https://jakerunzer.com">jake runzer</Link>

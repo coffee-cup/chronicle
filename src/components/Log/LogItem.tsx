@@ -1,7 +1,7 @@
 /** @jsx jsx */
-import { Styled, Button, Grid, Flex, Input, Box, jsx } from "theme-ui";
 import * as React from "react";
-import { ILog } from "../types";
+import { Box, jsx } from "theme-ui";
+import { ILog } from "../../types";
 
 export interface Props {
   log: ILog;
@@ -9,8 +9,8 @@ export interface Props {
 
 const LogItem: React.FC<Props> = props => (
   <Box
+    as="li"
     sx={{
-      mb: 4,
       py: 2,
       bg: "background",
     }}

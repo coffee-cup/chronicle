@@ -8,20 +8,19 @@ import LogItem from "./LogItem";
 
 const LogGroup: React.FC<{ logs: ILog[] }> = props => {
   const formattedDate = format(props.logs[0].date, "iiii, MMMM do");
+  const id = format(props.logs[0].date, "yyyy-MM-dd");
 
   return (
-    <Box className={`log-group`} sx={{ pb: 2 }}>
+    <Box className={`log-group`} sx={{ pb: 2 }} id={id}>
       <Box
         sx={{
-          bg: "muted",
-          px: 2,
           py: 1,
-          mb: 1,
-          fontSize: 1,
-          color: "grey.700",
+          fontSize: 0,
+          color: "grey.600",
+          letterSpacing: "0.2px",
         }}
       >
-        {formattedDate}
+        {formattedDate.toUpperCase()}
       </Box>
 
       <Box as="ul" sx={{ listStyle: "none", pl: 0 }}>

@@ -63,7 +63,7 @@ const Log: React.FC<LogProtocol> = props => {
             </Box>
           </Box>
 
-          <LogList logs={props.logs} />
+          <LogList {...props} />
         </Box>
 
         <Box sx={{ width: ["100%", "300px", "400px"] }}>

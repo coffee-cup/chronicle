@@ -43,7 +43,7 @@ export const DemoProvider: React.FC = props => {
 
   const deleteLog = (id: string) => {
     delete logs[id];
-    setLogs(logs);
+    setLogs({ ...logs });
   };
 
   const value: LogProtocol = {

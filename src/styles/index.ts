@@ -124,6 +124,9 @@ const theme: Theme = {
         color: "white",
       },
     },
+    icon: {
+      cursor: "pointer",
+    },
     subtle: {
       ...baseButton,
       color: "text",

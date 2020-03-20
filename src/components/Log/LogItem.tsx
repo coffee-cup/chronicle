@@ -6,7 +6,7 @@ import { ILog } from "../../types";
 
 export interface Props {
   log: ILog;
-  deleteLog: (id: string) => void
+  deleteLog: (id: string) => void;
 }
 
 const LogItem: React.FC<Props> = props => (
@@ -20,7 +20,7 @@ const LogItem: React.FC<Props> = props => (
       bg: "background",
       overflow: "hidden",
       wordWrap: "break-word",
-      transition: "all 250ms ease-in-out",
+      transition: "all 150ms ease-in-out",
 
       "&:hover": {
         bg: "muted",
@@ -35,9 +35,9 @@ const LogItem: React.FC<Props> = props => (
     {props.log.text}
     <IconButton
       className="trash"
-      sx={{ opacity: 0, transition: "opacity 250ms ease-in-out" }}
+      sx={{ opacity: 0, transition: "opacity 150ms ease-in-out" }}
       onClick={() => {
-        props.deleteLog(props.log.id)
+        props.deleteLog(props.log.id);
       }}
     >
       <Trash size={16} />

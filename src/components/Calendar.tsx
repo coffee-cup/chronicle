@@ -47,6 +47,9 @@ const Calendar: React.FC<Props> = props => {
         ".nice-dates-day": {
           color: "grey.600",
         },
+        ".nice-dates-navigation": {
+          color: "text",
+        },
         ".-outside": {
           color: "grey.400",
         },

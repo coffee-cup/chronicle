@@ -64,15 +64,19 @@ const baseButton = {
   },
 };
 
+const darkColor = "#171717";
+const lightColor = "white";
+
 const theme: Theme = {
   ...system,
   colors: {
-    text: "#171717",
-    background: "white",
-    primary: "#171717",
-    secondary: "white",
+    text: darkColor,
+    background: lightColor,
+    primary: darkColor,
+    secondary: lightColor,
     accent: "#fbba72",
     muted: "#eff0f6",
+    highlight: "green",
     grey: {
       200: "#dfdfdf",
       400: "#cecece",
@@ -81,6 +85,16 @@ const theme: Theme = {
       700: "#666565",
     },
     error: "red",
+
+    modes: {
+      dark: {
+        text: lightColor,
+        background: darkColor,
+        primary: lightColor,
+        secondary: darkColor,
+        muted: "#313030",
+      },
+    },
   },
 
   breakpoints: ["40em", "52em", "64em"],
@@ -102,7 +116,8 @@ const theme: Theme = {
   fontSizes: [12, 14, 16, 20, 24, 32, 48, 64, 96],
 
   sizes: {
-    container: "1000px",
+    container: "900px",
+    logList: "400px",
     measure: "32em",
     header: "6rem",
   },
@@ -130,12 +145,11 @@ const theme: Theme = {
     subtle: {
       ...baseButton,
       color: "text",
-      bg: "grey.200",
+      bg: "transparent",
       py: 1,
-      borderColor: "grey.200",
+      borderColor: "text",
 
       "&:hover": {
-        borderColor: "text",
         boxShadow: "none",
       },
     },
@@ -200,6 +214,7 @@ const theme: Theme = {
     },
     textarea: {
       borderRadius: 0,
+      borderColor: "grey.600",
       resize: "vertical",
       maxHeight: "200px",
       fontSize: 2,

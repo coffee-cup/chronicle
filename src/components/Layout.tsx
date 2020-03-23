@@ -1,13 +1,10 @@
 /** @jsx jsx */
 import * as React from "react";
-import { Box, jsx, ThemeProvider } from "theme-ui";
-import Header from "./Header";
-import Footer from "./Footer";
-import theme from "../styles";
-import SEO from "./SEO";
-import useUser from "../hooks/use-user";
-
+import { Box, jsx } from "theme-ui";
 import "../firebase";
+import Footer from "./Footer";
+import Header from "./Header";
+import SEO from "./SEO";
 
 export interface Props {
   title?: string;
@@ -16,32 +13,30 @@ export interface Props {
 
 const Layout: React.FC<Props> = props => {
   return (
-    <ThemeProvider theme={theme}>
-      <>
-        <SEO title={props.title} description={props.description} />
+    <>
+      <SEO title={props.title} description={props.description} />
 
+      <Box
+        sx={{
+          maxWidth: "container",
+          mx: "auto",
+          my: 0,
+          px: [3, 4],
+          py: 0,
+        }}
+      >
         <Box
           sx={{
-            maxWidth: "container",
-            mx: "auto",
-            my: 0,
-            px: [3, 4],
-            py: 0,
+            minHeight: "100vh",
           }}
         >
-          <Box
-            sx={{
-              minHeight: "100vh",
-            }}
-          >
-            <Header />
-            {props.children}
-          </Box>
-
-          <Footer />
+          <Header />
+          {props.children}
         </Box>
-      </>
-    </ThemeProvider>
+
+        <Footer />
+      </Box>
+    </>
   );
 };
 

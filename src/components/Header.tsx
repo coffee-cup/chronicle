@@ -1,26 +1,8 @@
 /** @jsx jsx */
 import * as React from "react";
+import { Box, Flex, jsx } from "theme-ui";
 import Link from "./Link";
-import { jsx, Spinner, Flex, Box, NavLink } from "theme-ui";
-import useUser from "../hooks/use-user";
-
-const Nav = () => {
-  const { user, initialising } = useUser();
-
-  return (
-    <Flex as="nav">
-      <NavLink as={Link} href="/demo">
-        demo
-      </NavLink>
-      <NavLink as={Link} href="/faq">
-        faq
-      </NavLink>
-      <NavLink as={Link} href={user == null ? "/login" : "/me"}>
-        {initialising ? <Spinner size={22} /> : user == null ? "login" : "me"}
-      </NavLink>
-    </Flex>
-  );
-};
+import Nav from "./Nav";
 
 const Header: React.FC<{ home?: string }> = props => (
   <Flex
@@ -35,6 +17,7 @@ const Header: React.FC<{ home?: string }> = props => (
         •
       </Link>
     </Box>
+
     <Nav />
   </Flex>
 );

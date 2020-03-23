@@ -1,34 +1,20 @@
 /** @jsx jsx */
-import { format } from "date-fns";
 import * as React from "react";
-import { Box, Button, Flex, jsx, Text, Textarea } from "theme-ui";
+import { Box, Flex, jsx } from "theme-ui";
 import { LogProtocol } from "../../types";
 import Calendar from "../Calendar";
+import Editor from "../Editor";
 import LogList from "./LogList";
 
-const textLimit = 140;
-
 const Log: React.FC<LogProtocol> = props => {
-  const [text, setText] = React.useState("");
   const [date, setDate] = React.useState<Date>(new Date());
 
   const dateChanged = (date: Date) => {
     setDate(date);
   };
 
-  const submitForm = (e: React.FormEvent) => {
-    e.preventDefault();
-
-    if (text !== "") {
-      props.createLog(text, date);
-      setText("");
-    }
-  };
-
-  const changeText = (text: string) => {
-    if (text.length <= textLimit) {
-      setText(text);
-    }
+  const submitForm = (text: string) => {
+    props.createLog(text, date);
   };
 
   return (
@@ -46,37 +32,7 @@ const Log: React.FC<LogProtocol> = props => {
             width: ["100%"],
           }}
         >
-          <Box
-            as="form"
-            onSubmit={submitForm}
-            className="log-form"
-            sx={{ maxWidth: "500px" }}
-          >
-            <Box sx={{ mb: 2, flexGrow: 1 }}>
-              <Textarea
-                value={text}
-                placeholder={`What did you do on ${format(
-                  date,
-                  "iiii, MMMM do",
-                )}?`}
-                onChange={e => changeText(e.target.value)}
-              />
-            </Box>
-
-            <Box
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "flex-end",
-                textAlign: "right",
-              }}
-            >
-              <Text sx={{ pr: 3 }}>
-                {text.length} / {textLimit}
-              </Text>
-              <Button>Submit</Button>
-            </Box>
-          </Box>
+          <Editor date={date} submitForm={submitForm} />
 
           <LogList {...props} />
         </Box>

@@ -29,12 +29,7 @@ const Editor: React.FC<Props> = props => {
   };
 
   return (
-    <Box
-      as="form"
-      onSubmit={submitForm}
-      className="log-form"
-      sx={{ maxWidth: "500px" }}
-    >
+    <Box as="form" onSubmit={submitForm} className="log-form">
       <Box sx={{ mb: 2, flexGrow: 1 }}>
         <Textarea
           sx={{ minHeight: "90px" }}

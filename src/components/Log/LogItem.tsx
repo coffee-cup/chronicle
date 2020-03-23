@@ -11,14 +11,13 @@ export interface Props {
 
 const LogItem: React.FC<Props> = props => (
   <Box
-    as="li"
     sx={{
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "space-between",
+      position: "relative",
       py: 2,
       px: 2,
       bg: "background",
+      whiteSpace: "pre",
+      lineHeight: "body",
       overflow: "hidden",
       wordWrap: "break-word",
       transition: "all 150ms ease-in-out",
@@ -34,9 +33,16 @@ const LogItem: React.FC<Props> = props => (
     className="log"
   >
     {props.log.text}
+
     <IconButton
       className="trash"
-      sx={{ opacity: 0, transition: "opacity 150ms ease-in-out" }}
+      sx={{
+        position: "absolute",
+        top: 1,
+        right: 0,
+        opacity: 0,
+        transition: "opacity 150ms ease-in-out",
+      }}
       onClick={() => {
         props.deleteLog(props.log.id);
       }}

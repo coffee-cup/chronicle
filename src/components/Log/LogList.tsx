@@ -26,7 +26,7 @@ const LogGroup: React.FC<{
         {formattedDate.toUpperCase()}
       </Box>
 
-      <Box as="ul" sx={{ listStyle: "none", pl: 0 }}>
+      <Box sx={{}}>
         {props.logs.map(log => (
           <LogItem key={log.id} log={log} deleteLog={props.deleteLog} />
         ))}

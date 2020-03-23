@@ -11,3 +11,6 @@ export interface LogProtocol {
   createLog: (text: string, date: Date) => void;
   deleteLog: (id: string) => void;
 }
+
+export type SerializeFn<T = any> = (data: T) => string;
+export type DeserializeFn<T = any> = (item: string) => T;

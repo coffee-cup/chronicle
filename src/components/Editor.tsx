@@ -1,10 +1,10 @@
 /** @jsx jsx */
 import { format } from "date-fns";
 import * as React from "react";
-import { animateScroll } from "react-scroll";
 import { Box, Button, jsx, Text, Textarea } from "theme-ui";
 import { LogProtocol } from "../types";
 import { getClosestDate } from "../utils";
+import { scrollTo } from "../utils/scrollTo";
 import Calendar from "./Calendar";
 
 const textLimit = 140;
@@ -30,13 +30,7 @@ const Editor: React.FC<LogProtocol> = props => {
 
     if (closestDate != null) {
       const id = format(closestDate, "yyyy-MM-dd");
-      const el = document.getElementById(id);
-      if (el != null) {
-        animateScroll.scrollTo(el.offsetTop, {
-          duration: 350,
-          smooth: "easeInOut",
-        });
-      }
+      scrollTo(id);
     }
   };
 

@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import * as React from "react";
-import { Trash } from "react-feather";
+import { X } from "react-feather";
 import { Box, IconButton, jsx } from "theme-ui";
 import { ILog } from "../../types";
 
@@ -17,6 +17,7 @@ const LogItem: React.FC<Props> = props => (
       alignItems: "center",
       justifyContent: "space-between",
       py: 2,
+      px: 2,
       bg: "background",
       overflow: "hidden",
       wordWrap: "break-word",
@@ -40,7 +41,7 @@ const LogItem: React.FC<Props> = props => (
         props.deleteLog(props.log.id);
       }}
     >
-      <Trash size={16} />
+      <X size={16} />
     </IconButton>
   </Box>
 );

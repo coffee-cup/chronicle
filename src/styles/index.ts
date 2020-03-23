@@ -51,7 +51,7 @@ const baseButton = {
   color: "secondary",
   bg: "primary",
   cursor: "pointer",
-  py: 2,
+  py: 1,
   borderRadius: 0,
   border: "solid 2px",
   borderColor: "primary",
@@ -102,7 +102,7 @@ const theme: Theme = {
   fontSizes: [12, 14, 16, 20, 24, 32, 48, 64, 96],
 
   sizes: {
-    container: "72rem",
+    container: "1000px",
     measure: "32em",
     header: "6rem",
   },
@@ -197,6 +197,13 @@ const theme: Theme = {
     },
     slider: {
       color: "primary",
+    },
+    textarea: {
+      borderRadius: 0,
+      resize: "vertical",
+      maxHeight: "200px",
+      fontSize: 2,
+      fontFamily: "body",
     },
   },
 

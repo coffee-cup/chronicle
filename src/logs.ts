@@ -14,7 +14,7 @@ export const deserializeLogs: DeserializeFn<KeyedLogs> = (
 
   for (const k of Object.keys(items)) {
     logs[k] = {
-      date: new Date(items[k].date),
+      date: new Date(new Date(items[k].date).toDateString()),
       id: items[k].id,
       text: items[k].text,
     };

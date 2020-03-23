@@ -8,6 +8,8 @@ export type KeyedLogs = { [id: string]: ILog };
 
 export interface LogProtocol {
   logs: KeyedLogs;
+  selectedDate: Date;
+  setSelectedDate: (date: Date) => void;
   createLog: (text: string, date: Date) => void;
   deleteLog: (id: string) => void;
 }

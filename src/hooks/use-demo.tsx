@@ -38,6 +38,9 @@ const demoLogKey = "@demo-logs";
 
 export const DemoProvider: React.FC = props => {
   const [logs, setLogs] = React.useState<KeyedLogs>(initialLogs);
+  const [selectedDate, setSelectedDate] = React.useState<Date>(
+    new Date(new Date().toDateString()),
+  );
 
   React.useEffect(() => {
     const logs = getItem(demoLogKey, initialLogs, deserializeLogs);
@@ -68,6 +71,8 @@ export const DemoProvider: React.FC = props => {
 
   const value: LogProtocol = {
     logs,
+    selectedDate,
+    setSelectedDate,
     createLog,
     deleteLog,
   };

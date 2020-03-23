@@ -20,7 +20,7 @@ const Calendar: React.FC<Props> = props => {
   };
 
   const setToday = () => {
-    const today = new Date();
+    const today = new Date(new Date().toDateString());
     props.onDateChanged(today);
     setDate(today);
   };
@@ -39,9 +39,6 @@ const Calendar: React.FC<Props> = props => {
   return (
     <Box
       sx={{
-        position: "sticky",
-        top: 3,
-        pb: 3,
         color: "blue",
         textAlign: "right",
         ".nice-dates-day": {
@@ -58,6 +55,7 @@ const Calendar: React.FC<Props> = props => {
         },
         ".-highlight": {
           color: "text",
+          fontWeight: "bold",
         },
       }}
       className="calendar"

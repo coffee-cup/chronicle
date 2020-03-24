@@ -25,7 +25,7 @@ export const deserializeLogs: DeserializeFn<KeyedLogs> = (
   return logs;
 };
 
-export const newLog = (text: string, date: Date, userId: string): ILog => {
+export const newLog = (text: string, date: Date, userId?: string): ILog => {
   const log: ILog = {
     id: uuid.v4(),
     text,

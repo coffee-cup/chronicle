@@ -1,12 +1,12 @@
 /** @jsx jsx */
+import { useRouter } from "next/router";
 import * as React from "react";
-import { Styled, jsx, Flex, Button, Box, Label, Input } from "theme-ui";
+import { useForm } from "react-hook-form";
+import { Box, Button, Flex, Input, jsx, Label, Styled } from "theme-ui";
 import Layout from "../components/Layout";
 import Link from "../components/Link";
-import { useForm } from "react-hook-form";
 import useUser from "../hooks/use-user";
 import { emailRegex } from "../utils";
-import { useRouter } from "next/router";
 
 interface FormData {
   email: string;
@@ -25,7 +25,7 @@ const Signup = () => {
 
     try {
       await createAccount(email, password);
-      router.push("/me");
+      router.push("/logs");
     } catch (e) {
       setError(e.message ?? "error logging in");
     }

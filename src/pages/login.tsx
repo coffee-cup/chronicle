@@ -25,7 +25,7 @@ const Login = () => {
 
     try {
       await login(email, password);
-      router.push("/me");
+      router.push("/logs");
     } catch (e) {
       setError(e.message ?? "error logging in");
     }

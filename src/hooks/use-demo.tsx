@@ -1,9 +1,8 @@
 import { subDays } from "date-fns";
 import * as React from "react";
-import * as uuid from "uuid";
 import { getItem, saveItem } from "../local";
-import { deserializeLogs } from "../logs";
-import { ILog, KeyedLogs, LogProtocol } from "../types";
+import { deserializeLogs, newLog } from "../logs";
+import { KeyedLogs, LogProtocol } from "../types";
 
 const DemoContext = React.createContext<LogProtocol>({} as LogProtocol);
 
@@ -52,11 +51,7 @@ export const DemoProvider: React.FC = props => {
   }, [logs]);
 
   const createLog = (text: string, date: Date) => {
-    const log: ILog = {
-      id: uuid.v4(),
-      text,
-      date,
-    };
+    const log = newLog(text, date);
 
     setLogs({
       ...logs,
@@ -70,6 +65,8 @@ export const DemoProvider: React.FC = props => {
   };
 
   const value: LogProtocol = {
+    loading: false,
+    error: null,
     logs,
     selectedDate,
     setSelectedDate,

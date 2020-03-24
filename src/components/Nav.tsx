@@ -38,14 +38,23 @@ const Nav: React.FC = () => {
 
   return (
     <Flex as="nav">
-      <NavLink as={Link} href="/demo">
-        demo
-      </NavLink>
+      {!loading && user == null && (
+        <NavLink as={Link} href="/demo">
+          demo
+        </NavLink>
+      )}
+
+      {!loading && user != null && (
+        <NavLink as={Link} href="/logs">
+          logs
+        </NavLink>
+      )}
+
       <NavLink as={Link} href="/faq">
         faq
       </NavLink>
-      <NavLink as={Link} href={user == null ? "/login" : "/me"}>
-        {loading ? <Spinner size={22} /> : user == null ? "login" : "me"}
+      <NavLink as={Link} href={user == null ? "/login" : "/logout"}>
+        {loading ? <Spinner size={22} /> : user == null ? "login" : "logout"}
       </NavLink>
 
       <ThemeSwitcher />

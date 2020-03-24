@@ -11,7 +11,6 @@ const Me = () => {
   return (
     <Layout>
       <Box
-        className="home"
         sx={{
           pt: 6,
         }}

@@ -34,7 +34,7 @@ const ThemeSwitcher: React.FC = () => {
 };
 
 const Nav: React.FC = () => {
-  const { user, initialising } = useUser();
+  const { user, loading } = useUser();
 
   return (
     <Flex as="nav">
@@ -45,7 +45,7 @@ const Nav: React.FC = () => {
         faq
       </NavLink>
       <NavLink as={Link} href={user == null ? "/login" : "/me"}>
-        {initialising ? <Spinner size={22} /> : user == null ? "login" : "me"}
+        {loading ? <Spinner size={22} /> : user == null ? "login" : "me"}
       </NavLink>
 
       <ThemeSwitcher />

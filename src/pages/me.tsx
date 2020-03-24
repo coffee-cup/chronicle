@@ -5,7 +5,7 @@ import Layout from "../components/Layout";
 import useUser from "../hooks/use-user";
 
 const Me = () => {
-  const { user, initialising, logout } = useUser();
+  const { user, loading, logout } = useUser();
   const router = useRouter();
 
   return (
@@ -16,7 +16,7 @@ const Me = () => {
           pt: 6,
         }}
       >
-        {initialising && <Spinner />}
+        {loading && <Spinner />}
 
         {user && (
           <Box>

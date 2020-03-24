@@ -21,7 +21,7 @@ class MyDocument extends Document {
             <img src="https://api.simpleanalytics.io/hello.gif" alt="" />
           </noscript>
         </Head>
-        >
+
         <body>
           <InitializeColorMode />
           <Main />

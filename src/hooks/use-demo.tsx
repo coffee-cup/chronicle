@@ -40,7 +40,7 @@ export const useDemo = (): LogProtocol => React.useContext(DemoContext);
 const demoLogKey = "@demo-logs";
 
 export const DemoProvider: React.FC = props => {
-  const [logs, setLogs] = React.useState<KeyedLogs>(initialLogs);
+  const [logs, setLogs] = React.useState<KeyedLogs>({});
   const [selectedDate, setSelectedDate] = React.useState<Date>(
     new Date(new Date().toDateString()),
   );

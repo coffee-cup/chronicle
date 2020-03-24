@@ -11,13 +11,15 @@ export const useFirebase = (): LogProtocol => React.useContext(FirebaseContext);
 
 const firestore = firebase.firestore();
 
-export type IFirestoreLog = ILog & {
+export type IFirestoreLog = Omit<ILog, "date" | "created"> & {
   date: firebase.firestore.Timestamp;
+  created: firebase.firestore.Timestamp;
 };
 
 const firestoreLogToLog = (data: IFirestoreLog): ILog => ({
   ...data,
   date: data.date.toDate(),
+  created: data.created.toDate(),
 });
 
 export const FirebaseProvider: React.FC = props => {

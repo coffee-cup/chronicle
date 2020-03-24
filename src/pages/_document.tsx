@@ -11,7 +11,17 @@ class MyDocument extends Document {
   render() {
     return (
       <Html>
-        <Head />
+        <Head>
+          <script
+            async
+            defer
+            src="https://cdn.simpleanalytics.io/hello.js"
+          ></script>
+          <noscript>
+            <img src="https://api.simpleanalytics.io/hello.gif" alt="" />
+          </noscript>
+        </Head>
+        >
         <body>
           <InitializeColorMode />
           <Main />

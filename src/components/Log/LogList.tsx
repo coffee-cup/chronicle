@@ -10,12 +10,11 @@ const LogGroup: React.FC<{
   logs: ILog[];
   deleteLog: (id: string) => void;
 }> = props => {
-  const ref = React.useRef<HTMLDivElement | null>(null);
   const formattedDate = format(props.logs[0].date, "iiii, MMMM do");
   const id = format(props.logs[0].date, "yyyy-MM-dd");
 
   return (
-    <Box className={`log-group`} sx={{ pb: 2 }} id={id} ref={ref}>
+    <Box className={`log-group`} sx={{ pb: 2 }} id={id}>
       <Box
         sx={{
           pb: 1,

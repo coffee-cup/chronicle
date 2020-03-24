@@ -2,8 +2,8 @@
 import { isSameDay } from "date-fns";
 import { enGB } from "date-fns/locale";
 import * as React from "react";
-import { DatePickerCalendar } from "react-nice-dates";
-import { Box, Button, jsx } from "theme-ui";
+import { DatePicker as NiceDatePicker } from "react-nice-dates";
+import { Box, Input, jsx } from "theme-ui";
 
 export interface Props {
   initialValue?: Date;
@@ -11,18 +11,12 @@ export interface Props {
   highlighted?: Date[];
 }
 
-const Calendar: React.FC<Props> = props => {
+const DatePicker: React.FC<Props> = props => {
   const [date, setDate] = React.useState(props.initialValue);
 
   const onDateChanged = (date: Date) => {
     setDate(date);
     props.onDateChanged(date);
-  };
-
-  const setToday = () => {
-    const today = new Date(new Date().toDateString());
-    props.onDateChanged(today);
-    setDate(today);
   };
 
   const modifiers = {
@@ -40,6 +34,11 @@ const Calendar: React.FC<Props> = props => {
     <Box
       sx={{
         textAlign: "right",
+        ".nice-dates-popover": {
+          bg: "background",
+          border: "solid 2px",
+          borderColor: "grey.600",
+        },
         ".nice-dates-day": {
           color: "grey.600",
         },
@@ -57,25 +56,25 @@ const Calendar: React.FC<Props> = props => {
           fontWeight: "bold",
         },
       }}
-      className="calendar"
     >
-      <DatePickerCalendar
+      <NiceDatePicker
         date={date}
         onDateChange={onDateChanged}
         locale={enGB}
+        format="MMM dd yyyy"
         modifiers={modifiers}
         modifiersClassNames={modifiersClassNames}
-      />
-
-      <Button
-        variant="subtle"
-        sx={{ mt: 2, display: ["none", "inline-block"] }}
-        onClick={setToday}
       >
-        today
-      </Button>
+        {({ inputProps, focused }) => (
+          <Input
+            sx={{ p: 0, border: 0, maxWidth: "140px" }}
+            className={"input" + (focused ? " -focused" : "")}
+            {...inputProps}
+          />
+        )}
+      </NiceDatePicker>
     </Box>
   );
 };
 
-export default Calendar;
+export default DatePicker;

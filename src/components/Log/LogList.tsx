@@ -27,9 +27,11 @@ const LogGroup: React.FC<{
       </Box>
 
       <Box sx={{}}>
-        {sortBy(props.logs, l => l.created).map(log => (
-          <LogItem key={log.id} log={log} deleteLog={props.deleteLog} />
-        ))}
+        {sortBy(props.logs, l => l.created)
+          .reverse()
+          .map(log => (
+            <LogItem key={log.id} log={log} deleteLog={props.deleteLog} />
+          ))}
       </Box>
     </Box>
   );

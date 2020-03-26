@@ -11,7 +11,14 @@ const Home = () => (
           pt: 6,
         }}
       >
-        <Styled.h1>Bullshit free personal logging</Styled.h1>
+        <Box sx={{ pb: 2, maxWidth: "measure" }}>
+          <Styled.h1 sx={{ mb: 0 }}>Bullshit Free Journaling</Styled.h1>
+
+          <Styled.p sx={{ fontSize: 3 }}>
+            Chronicle is a lightweight journaling app where you record
+            highlights of your day.
+          </Styled.p>
+        </Box>
 
         <Link href="/logs" variant="button">
           Get Started

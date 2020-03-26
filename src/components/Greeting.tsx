@@ -33,8 +33,8 @@ const Greeting: React.FC<Props> = props => {
           <Styled.p>
             These logs are only persisted in this browser's local storage. If
             you want to be able to access them on multiple devices,{" "}
-            <Link to="/signup">create an account</Link> or{" "}
-            <Link to="/login">login</Link>.
+            <Link href="/signup">create an account</Link> or{" "}
+            <Link href="/login">login</Link>.
           </Styled.p>
         )}
 

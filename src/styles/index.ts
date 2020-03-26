@@ -114,7 +114,7 @@ const theme: Theme = {
     monospace: "Consolas, Liberation Mono, Menlo, Courier, monospace",
   },
 
-  fontSizes: [12, 14, 16, 20, 24, 32, 48, 64, 96],
+  fontSizes: [12, 14, 16, 18, 24, 32, 48, 64, 96],
 
   sizes: {
     container: "1000px",

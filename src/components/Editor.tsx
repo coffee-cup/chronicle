@@ -2,6 +2,7 @@
 import { format } from "date-fns";
 import * as React from "react";
 import { Box, Button, jsx, Text, Textarea } from "theme-ui";
+
 import { KeyedLogs, LogProtocol } from "../types";
 import { getClosestDate } from "../utils";
 import { scrollTo } from "../utils/scrollTo";
@@ -57,7 +58,7 @@ const Editor: React.FC<LogProtocol> = props => {
   const submitForm = (e?: React.FormEvent) => {
     e?.preventDefault();
 
-    if (text != null && text !== "") {
+    if (text != null && text.trim() !== "") {
       props.createLog(text, props.selectedDate);
       setText("");
     }

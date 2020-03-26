@@ -67,7 +67,7 @@ const DatePicker: React.FC<Props> = props => {
       >
         {({ inputProps, focused }) => (
           <Input
-            sx={{ p: 0, border: 0, maxWidth: "140px" }}
+            sx={{ p: 0, border: 0, maxWidth: "140px", cursor: "pointer" }}
             className={"input" + (focused ? " -focused" : "")}
             {...inputProps}
           />

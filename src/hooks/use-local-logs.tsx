@@ -1,17 +1,9 @@
 import { subDays } from "date-fns";
 import * as React from "react";
-import { getItem, saveItem } from "../local";
-import {
-  deserializeLogs,
-  newLog,
-  getLogGroups,
-  getGroupForDate,
-} from "../logs";
+import { getGroupForDate, newLog, getLocalLogs, saveLocalLogs } from "../logs";
 import { KeyedLogs, LogProtocol } from "../types";
 
-const DemoContext = React.createContext<LogProtocol>({} as LogProtocol);
-
-const initialLogs: KeyedLogs = [
+const startingLogs: KeyedLogs = [
   newLog(
     "They are small, bite size, and simply explain one thing you did",
     new Date(),
@@ -19,7 +11,7 @@ const initialLogs: KeyedLogs = [
   ),
   newLog("This is a log", new Date(), 1),
   newLog(
-    "You can create them for any day in the past (or even future)",
+    "You can create them for any day in the past (or future)",
     subDays(new Date(), 1),
     0,
   ),
@@ -31,23 +23,26 @@ const initialLogs: KeyedLogs = [
   {},
 );
 
-export const useDemo = (): LogProtocol => React.useContext(DemoContext);
+const initialLogs = getLocalLogs(startingLogs);
 
-const demoLogKey = "@demo-logs";
+const LocalContext = React.createContext<LogProtocol>({} as LogProtocol);
 
-export const DemoProvider: React.FC = props => {
-  const [logs, setLogs] = React.useState<KeyedLogs>({});
+export const useLocalLogs = (): LogProtocol => React.useContext(LocalContext);
+
+export const LocalProvider: React.FC = props => {
+  const [logs, setLogs] = React.useState<KeyedLogs>(initialLogs);
   const [selectedDate, setSelectedDate] = React.useState<Date>(
     new Date(new Date().toDateString()),
   );
+  const firstRun = React.useRef(true);
 
   React.useEffect(() => {
-    const logs = getItem(demoLogKey, initialLogs, deserializeLogs);
-    setLogs(logs);
-  }, []);
+    if (!firstRun.current) {
+      console.log("saving logs!");
+      saveLocalLogs(logs);
+    }
 
-  React.useEffect(() => {
-    saveItem(demoLogKey, logs);
+    firstRun.current = false;
   }, [logs]);
 
   const createLog = (text: string, date: Date) => {
@@ -78,6 +73,8 @@ export const DemoProvider: React.FC = props => {
   };
 
   return (
-    <DemoContext.Provider value={value}>{props.children}</DemoContext.Provider>
+    <LocalContext.Provider value={value}>
+      {props.children}
+    </LocalContext.Provider>
   );
 };

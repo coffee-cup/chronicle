@@ -23,3 +23,5 @@ export interface LogProtocol {
 
 export type SerializeFn<T = any> = (data: T) => string;
 export type DeserializeFn<T = any> = (item: string) => T;
+
+export type LogsType = "loading" | "local" | "firebase";

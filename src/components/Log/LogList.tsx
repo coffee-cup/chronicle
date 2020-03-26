@@ -1,12 +1,10 @@
 /** @jsx jsx */
-import { format, getDayOfYear, getYear } from "date-fns";
-import { groupBy, maxBy, sortBy } from "lodash";
+import { format } from "date-fns";
 import * as React from "react";
 import { Box, jsx } from "theme-ui";
-
+import { getLogGroups } from "../../logs";
 import { ILog, LogProtocol } from "../../types";
 import LogItem from "./LogItem";
-import { getLogGroups } from "../../logs";
 
 const LogGroup: React.FC<{
   logs: ILog[];

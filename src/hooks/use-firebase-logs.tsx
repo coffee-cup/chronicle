@@ -1,13 +1,16 @@
 import firebase from "firebase";
 import * as React from "react";
 import { useImmer } from "use-immer";
-import { newLog, getGroupForDate } from "../logs";
+import { newLog, getGroupForDate, getLocalLogs, clearLocalLogs } from "../logs";
 import { ILog, KeyedLogs, LogProtocol } from "../types";
 import useUser from "./use-user";
 
+const logsCollection = "logs";
+
 const FirebaseContext = React.createContext<LogProtocol>({} as LogProtocol);
 
-export const useFirebase = (): LogProtocol => React.useContext(FirebaseContext);
+export const useFirebaseLogs = (): LogProtocol =>
+  React.useContext(FirebaseContext);
 
 const firestore = firebase.firestore();
 
@@ -33,7 +36,9 @@ export const FirebaseProvider: React.FC = props => {
       return;
     }
 
-    const query = firestore.collection("logs").where("userId", "==", user.uid);
+    const query = firestore
+      .collection(logsCollection)
+      .where("userId", "==", user.uid);
 
     const unsubscribe = query.onSnapshot(
       snapshot => {
@@ -62,6 +67,26 @@ export const FirebaseProvider: React.FC = props => {
     return () => unsubscribe();
   }, [user]);
 
+  // upload all logs in local storage to the user account
+  React.useEffect(() => {
+    if (user != null) {
+      const localLogs = getLocalLogs({});
+      if (Object.keys(localLogs).length > 0) {
+        for (const [id, log] of Object.entries(localLogs)) {
+          firestore
+            .collection(logsCollection)
+            .doc(id)
+            .set({
+              ...log,
+              userId: user.uid,
+            });
+        }
+
+        clearLocalLogs();
+      }
+    }
+  }, [user]);
+
   const [selectedDate, setSelectedDate] = React.useState<Date>(
     new Date(new Date().toDateString()),
   );
@@ -77,14 +102,14 @@ export const FirebaseProvider: React.FC = props => {
     const log = newLog(text, date, order, user.uid);
 
     firestore
-      .collection("logs")
+      .collection(logsCollection)
       .doc(log.id)
       .set(log);
   };
 
   const deleteLog = (id: string) => {
     firestore
-      .collection("logs")
+      .collection(logsCollection)
       .doc(id)
       .delete();
   };

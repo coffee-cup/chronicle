@@ -18,7 +18,23 @@ export type UserResult =
       user: null;
     };
 
-const useUser = () => {
+type UserState = UserResult & {
+  login: (
+    email: string,
+    password: string,
+  ) => Promise<firebase.auth.UserCredential>;
+  logout: () => Promise<void>;
+  createAccount: (
+    email: string,
+    password: string,
+  ) => Promise<firebase.auth.UserCredential>;
+};
+
+const UserContext = React.createContext<UserState>({} as UserState);
+
+export const useUser = (): UserState => React.useContext(UserContext);
+
+export const UserProvider: React.FC = props => {
   const [userResult, setUserResult] = React.useState<UserResult>({
     loading: true,
     error: null,
@@ -54,44 +70,16 @@ const useUser = () => {
   const createAccount = (email: string, password: string) =>
     firebase.auth().createUserWithEmailAndPassword(email, password);
 
-  return {
+  const value: UserState = {
     ...userResult,
     login,
     logout,
     createAccount,
   };
+
+  return (
+    <UserContext.Provider value={value}>{props.children}</UserContext.Provider>
+  );
 };
 
 export default useUser;
-
-// const useUser = (
-//   options: { authRequired: boolean } = {
-//     authRequired: false,
-//   },
-// ) => {
-//   const [user, initialising, error] = useAuthState(firebase.auth());
-//   const router = useRouter();
-
-//   const login = (email: string, password: string) =>
-//     firebase.auth().signInWithEmailAndPassword(email, password);
-
-//   const logout = () => firebase.auth().signOut();
-
-//   const createAccount = (email: string, password: string) =>
-//     firebase.auth().createUserWithEmailAndPassword(email, password);
-
-//   if (options && options.authRequired && user == null && !initialising) {
-//     router.push("/login");
-//   }
-
-//   return {
-//     user,
-//     initialising,
-//     error,
-//     login,
-//     createAccount,
-//     logout,
-//   };
-// };
-
-// export default useUser;

@@ -3,6 +3,7 @@ import { getDayOfYear, getYear } from "date-fns";
 import { groupBy, sortBy, maxBy, orderBy } from "lodash";
 import { DeserializeFn, ILog, KeyedLogs, SerializeFn, LogGroup } from "./types";
 import { INSPECT_MAX_BYTES } from "buffer";
+import { getItem, saveItem, clearItem } from "./local";
 
 export const serializeLogs: SerializeFn<KeyedLogs> = (
   logs: KeyedLogs,
@@ -77,3 +78,13 @@ export const newLog = (
 
   return log;
 };
+
+const localLogKey = "@local-logs";
+
+export const getLocalLogs = (defaultValue: KeyedLogs): KeyedLogs =>
+  getItem(localLogKey, defaultValue, deserializeLogs);
+
+export const saveLocalLogs = (logs: KeyedLogs) =>
+  saveItem(localLogKey, logs, serializeLogs);
+
+export const clearLocalLogs = () => clearItem(localLogKey);

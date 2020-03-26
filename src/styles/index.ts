@@ -93,6 +93,7 @@ const theme: Theme = {
         primary: lightColor,
         secondary: darkColor,
         muted: "#313030",
+        accent: "#c37620",
       },
     },
   },

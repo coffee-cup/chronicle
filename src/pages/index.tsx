@@ -13,8 +13,8 @@ const Home = () => (
       >
         <Styled.h1>Bullshit free personal logging</Styled.h1>
 
-        <Link href="/demo" variant="button">
-          Demo
+        <Link href="/logs" variant="button">
+          Get Started
         </Link>
       </Box>
     </div>

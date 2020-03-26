@@ -3,25 +3,42 @@ import { Box, jsx } from "theme-ui";
 import Greeting from "../components/Greeting";
 import Layout from "../components/Layout";
 import Log from "../components/Log";
-import { FirebaseProvider, useFirebase } from "../hooks/use-firebase";
-import useUser from "../hooks/use-user";
+import { FirebaseProvider, useFirebaseLogs } from "../hooks/use-firebase-logs";
+import { LocalProvider, useLocalLogs } from "../hooks/use-local-logs";
+import useLogsType from "../hooks/use-logs-type";
+
+const FirebaseLogs = () => {
+  const logs = useFirebaseLogs();
+  return <Log {...logs} />;
+};
+
+const LocalLogs = () => {
+  const logs = useLocalLogs();
+  return <Log {...logs} />;
+};
 
 const LogsPage = () => {
-  const { user, loading } = useUser();
-  const firebaseLogs = useFirebase();
+  const logsType = useLogsType();
 
   return (
     <Layout>
       <Box>
-        <Greeting />
-        <Log {...firebaseLogs} />
+        <Greeting logsType={logsType} />
+
+        {logsType === "local" && (
+          <LocalProvider>
+            <LocalLogs />
+          </LocalProvider>
+        )}
+
+        {logsType === "firebase" && (
+          <FirebaseProvider>
+            <FirebaseLogs />
+          </FirebaseProvider>
+        )}
       </Box>
     </Layout>
   );
 };
 
-export default () => (
-  <FirebaseProvider>
-    <LogsPage />
-  </FirebaseProvider>
-);
+export default LogsPage;

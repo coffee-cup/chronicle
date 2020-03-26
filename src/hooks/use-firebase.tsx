@@ -1,7 +1,7 @@
 import firebase from "firebase";
 import * as React from "react";
 import { useImmer } from "use-immer";
-import { newLog } from "../logs";
+import { newLog, getGroupForDate } from "../logs";
 import { ILog, KeyedLogs, LogProtocol } from "../types";
 import useUser from "./use-user";
 
@@ -71,7 +71,10 @@ export const FirebaseProvider: React.FC = props => {
       throw new Error("cannot create log for no user");
     }
 
-    const log = newLog(text, date, user.uid);
+    const logGroup = getGroupForDate(date, logs);
+    const order = logGroup == null ? 0 : logGroup.length;
+
+    const log = newLog(text, date, order, user.uid);
 
     firestore
       .collection("logs")

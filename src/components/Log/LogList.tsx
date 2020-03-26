@@ -1,10 +1,12 @@
 /** @jsx jsx */
 import { format, getDayOfYear, getYear } from "date-fns";
-import { groupBy, sortBy } from "lodash";
+import { groupBy, maxBy, sortBy } from "lodash";
 import * as React from "react";
 import { Box, jsx } from "theme-ui";
+
 import { ILog, LogProtocol } from "../../types";
 import LogItem from "./LogItem";
+import { getLogGroups } from "../../logs";
 
 const LogGroup: React.FC<{
   logs: ILog[];
@@ -27,28 +29,20 @@ const LogGroup: React.FC<{
       </Box>
 
       <Box sx={{}}>
-        {sortBy(props.logs, l => l.created)
-          .reverse()
-          .map(log => (
-            <LogItem key={log.id} log={log} deleteLog={props.deleteLog} />
-          ))}
+        {props.logs.map(log => (
+          <LogItem key={log.id} log={log} deleteLog={props.deleteLog} />
+        ))}
       </Box>
     </Box>
   );
 };
 
-const groupByKey = (d: Date): string => `${getDayOfYear(d)}-${getYear(d)}`;
-
 const LogList: React.FC<LogProtocol> = props => {
-  const groups = groupBy(props.logs, l => groupByKey(l.date));
-  const sortedGroupKeys = sortBy(
-    Object.keys(groups),
-    k => groups[k][0].date,
-  ).reverse();
+  const { keys, groups } = getLogGroups(props.logs);
 
   return (
     <Box className="log-list">
-      {sortedGroupKeys.map(k => (
+      {keys.map(k => (
         <LogGroup key={k} logs={groups[k]} deleteLog={props.deleteLog} />
       ))}
     </Box>

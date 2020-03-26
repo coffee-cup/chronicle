@@ -9,7 +9,7 @@ export interface ILog {
 
 export type KeyedLogs = { [id: string]: ILog };
 
-export type LogGroup = ILog[];
+export type ILogGroup = ILog[];
 
 export interface LogProtocol {
   loading: boolean;

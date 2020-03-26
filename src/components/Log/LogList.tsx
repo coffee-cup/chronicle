@@ -2,16 +2,18 @@
 import { format } from "date-fns";
 import * as React from "react";
 import { Box, jsx } from "theme-ui";
+import { useLogs } from "../../hooks/use-logs";
 import { getLogGroups } from "../../logs";
-import { ILog, LogProtocol } from "../../types";
+import { ILogGroup } from "../../types";
 import LogItem from "./LogItem";
 
 const LogGroup: React.FC<{
-  logs: ILog[];
-  deleteLog: (id: string) => void;
+  group: ILogGroup;
 }> = props => {
-  const formattedDate = format(props.logs[0].date, "iiii, MMMM do");
-  const id = format(props.logs[0].date, "yyyy-MM-dd");
+  const { deleteLog } = useLogs();
+
+  const formattedDate = format(props.group[0].date, "iiii, MMMM do");
+  const id = format(props.group[0].date, "yyyy-MM-dd");
 
   return (
     <Box className={`log-group`} sx={{ pb: 2 }} id={id}>
@@ -27,21 +29,22 @@ const LogGroup: React.FC<{
       </Box>
 
       <Box sx={{}}>
-        {props.logs.map(log => (
-          <LogItem key={log.id} log={log} deleteLog={props.deleteLog} />
+        {props.group.map(log => (
+          <LogItem key={log.id} log={log} deleteLog={deleteLog} />
         ))}
       </Box>
     </Box>
   );
 };
 
-const LogList: React.FC<LogProtocol> = props => {
-  const { keys, groups } = getLogGroups(props.logs);
+const LogList: React.FC = props => {
+  const { logs } = useLogs();
+  const { keys, groups } = getLogGroups(logs);
 
   return (
     <Box className="log-list">
       {keys.map(k => (
-        <LogGroup key={k} logs={groups[k]} deleteLog={props.deleteLog} />
+        <LogGroup key={k} group={groups[k]} />
       ))}
     </Box>
   );

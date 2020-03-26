@@ -25,11 +25,7 @@ const startingLogs: KeyedLogs = [
 
 const initialLogs = getLocalLogs(startingLogs);
 
-const LocalContext = React.createContext<LogProtocol>({} as LogProtocol);
-
-export const useLocalLogs = (): LogProtocol => React.useContext(LocalContext);
-
-export const LocalProvider: React.FC = props => {
+const useLocalLogs = (): LogProtocol => {
   const [logs, setLogs] = React.useState<KeyedLogs>(initialLogs);
   const [selectedDate, setSelectedDate] = React.useState<Date>(
     new Date(new Date().toDateString()),
@@ -37,8 +33,8 @@ export const LocalProvider: React.FC = props => {
   const firstRun = React.useRef(true);
 
   React.useEffect(() => {
+    // only save the logs if the user has edited them
     if (!firstRun.current) {
-      console.log("saving logs!");
       saveLocalLogs(logs);
     }
 
@@ -62,7 +58,7 @@ export const LocalProvider: React.FC = props => {
     setLogs({ ...logs });
   };
 
-  const value: LogProtocol = {
+  const protocol: LogProtocol = {
     loading: false,
     error: null,
     logs,
@@ -72,9 +68,7 @@ export const LocalProvider: React.FC = props => {
     deleteLog,
   };
 
-  return (
-    <LocalContext.Provider value={value}>
-      {props.children}
-    </LocalContext.Provider>
-  );
+  return protocol;
 };
+
+export default useLocalLogs;

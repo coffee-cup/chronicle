@@ -3,38 +3,35 @@ import { Box, jsx } from "theme-ui";
 import Greeting from "../components/Greeting";
 import Layout from "../components/Layout";
 import Log from "../components/Log";
-import { FirebaseProvider, useFirebaseLogs } from "../hooks/use-firebase-logs";
-import { LocalProvider, useLocalLogs } from "../hooks/use-local-logs";
+import useFirebaseLogs from "../hooks/use-firebase-logs";
+import useLocalLogs from "../hooks/use-local-logs";
 import useLogsType from "../hooks/use-logs-type";
+import { LogsProvider } from "../hooks/use-logs";
 
-const FirebaseLogs = () => {
+const FirebaseLogs: React.FC = props => {
   const logs = useFirebaseLogs();
-  return <Log {...logs} />;
+  return <LogsProvider protocol={logs}>{props.children}</LogsProvider>;
 };
 
-const LocalLogs = () => {
+const LocalLogs: React.FC = props => {
   const logs = useLocalLogs();
-  return <Log {...logs} />;
+  return <LogsProvider protocol={logs}>{props.children}</LogsProvider>;
 };
 
 const LogsPage = () => {
   const logsType = useLogsType();
+
+  const LogsComp: React.FC = logsType === "firebase" ? FirebaseLogs : LocalLogs;
 
   return (
     <Layout>
       <Box>
         <Greeting logsType={logsType} />
 
-        {logsType === "local" && (
-          <LocalProvider>
-            <LocalLogs />
-          </LocalProvider>
-        )}
-
-        {logsType === "firebase" && (
-          <FirebaseProvider>
-            <FirebaseLogs />
-          </FirebaseProvider>
+        {logsType !== "loading" && (
+          <LogsComp>
+            <Log />
+          </LogsComp>
         )}
       </Box>
     </Layout>

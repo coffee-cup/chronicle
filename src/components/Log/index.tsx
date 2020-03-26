@@ -1,11 +1,13 @@
 /** @jsx jsx */
 import * as React from "react";
 import { Box, Flex, jsx, Spinner } from "theme-ui";
-import { LogProtocol } from "../../types";
+import { useLogs } from "../../hooks/use-logs";
 import Editor from "../Editor";
 import LogList from "./LogList";
 
-const Log: React.FC<LogProtocol> = props => {
+const Log: React.FC = () => {
+  const { loading, error } = useLogs();
+
   return (
     <Box
       className="log-container"
@@ -17,21 +19,19 @@ const Log: React.FC<LogProtocol> = props => {
       }}
     >
       <Box sx={{ flexGrow: 1, pr: [0, 2] }}>
-        {props.loading && (
+        {loading && (
           <Flex sx={{ justifyContent: "center", py: 2 }}>
             <Spinner />
           </Flex>
         )}
 
-        {props.error != null && (
-          <Box sx={{ color: "error" }}>{props.error}</Box>
-        )}
+        {error != null && <Box sx={{ color: "error" }}>{error}</Box>}
 
-        <LogList {...props} />
+        <LogList />
       </Box>
 
       <Box sx={{ width: ["100%", "300px", "400px"] }}>
-        <Editor {...props} />
+        <Editor />
       </Box>
     </Box>
   );

@@ -1,9 +1,14 @@
-import * as uuid from "uuid";
 import { getDayOfYear, getYear } from "date-fns";
-import { groupBy, sortBy, maxBy, orderBy } from "lodash";
-import { DeserializeFn, ILog, KeyedLogs, SerializeFn, LogGroup } from "./types";
-import { INSPECT_MAX_BYTES } from "buffer";
-import { getItem, saveItem, clearItem } from "./local";
+import { groupBy, orderBy, sortBy } from "lodash";
+import * as uuid from "uuid";
+import { clearItem, getItem, saveItem } from "./local";
+import {
+  DeserializeFn,
+  ILog,
+  ILogGroup,
+  KeyedLogs,
+  SerializeFn,
+} from "./types";
 
 export const serializeLogs: SerializeFn<KeyedLogs> = (
   logs: KeyedLogs,
@@ -36,7 +41,7 @@ export const getLogGroups = (
   logs: KeyedLogs,
 ): {
   keys: string[];
-  groups: { [key: string]: LogGroup };
+  groups: { [key: string]: ILogGroup };
 } => {
   const groups = groupBy(logs, l => groupByKey(l.date));
   const keys = sortBy(Object.keys(groups), k => groups[k][0].date).reverse();
@@ -56,7 +61,7 @@ export const getLogGroups = (
 export const getGroupForDate = (
   date: Date,
   logs: KeyedLogs,
-): LogGroup | undefined => {
+): ILogGroup | undefined => {
   const { groups } = getLogGroups(logs);
   return groups[groupByKey(date)];
 };

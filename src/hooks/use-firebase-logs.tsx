@@ -7,11 +7,6 @@ import useUser from "./use-user";
 
 const logsCollection = "logs";
 
-const FirebaseContext = React.createContext<LogProtocol>({} as LogProtocol);
-
-export const useFirebaseLogs = (): LogProtocol =>
-  React.useContext(FirebaseContext);
-
 const firestore = firebase.firestore();
 
 export type IFirestoreLog = Omit<ILog, "date" | "created"> & {
@@ -25,7 +20,7 @@ const firestoreLogToLog = (data: IFirestoreLog): ILog => ({
   created: data.created.toDate(),
 });
 
-export const FirebaseProvider: React.FC = props => {
+const useFirebaseLogs = (): LogProtocol => {
   const { user, loading: userLoading } = useUser();
   const [loading, setLoading] = React.useState(true);
   const [error, setError] = React.useState<string | null>(null);
@@ -114,7 +109,7 @@ export const FirebaseProvider: React.FC = props => {
       .delete();
   };
 
-  const value: LogProtocol = {
+  const protocol: LogProtocol = {
     loading,
     error,
     logs,
@@ -124,9 +119,7 @@ export const FirebaseProvider: React.FC = props => {
     deleteLog,
   };
 
-  return (
-    <FirebaseContext.Provider value={value}>
-      {props.children}
-    </FirebaseContext.Provider>
-  );
+  return protocol;
 };
+
+export default useFirebaseLogs;

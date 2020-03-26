@@ -8,6 +8,7 @@ import { getClosestDate } from "../utils";
 import { scrollTo } from "../utils/scrollTo";
 import Calendar from "./Calendar";
 import DatePicker from "./DatePicker";
+import { useLogs } from "../hooks/use-logs";
 
 const textLimit = 140;
 
@@ -27,18 +28,20 @@ const scrollToClosestDate = (logs: KeyedLogs, date: Date): Date | null => {
   return null;
 };
 
-const Editor: React.FC<LogProtocol> = props => {
+const Editor: React.FC = props => {
+  const { selectedDate, logs, setSelectedDate, createLog } = useLogs();
+
   const [text, setText] = React.useState("");
   const [scrolledDate, setScrolledDate] = React.useState<Date | null>(null);
 
   React.useEffect(() => {
     if (
       scrolledDate != null &&
-      scrolledDate.toDateString() !== props.selectedDate.toDateString()
+      scrolledDate.toDateString() !== selectedDate.toDateString()
     ) {
-      scrollToClosestDate(props.logs, props.selectedDate);
+      scrollToClosestDate(logs, selectedDate);
     }
-  }, [props.logs, props.selectedDate]);
+  }, [logs, selectedDate]);
 
   const changeText = (text: string) => {
     if (text.length <= textLimit) {
@@ -47,10 +50,10 @@ const Editor: React.FC<LogProtocol> = props => {
   };
 
   const changeDate = (date: Date, scroll: boolean = false) => {
-    props.setSelectedDate(date);
+    setSelectedDate(date);
 
     if (scroll) {
-      const closestDate = scrollToClosestDate(props.logs, date);
+      const closestDate = scrollToClosestDate(logs, date);
       setScrolledDate(closestDate);
     }
   };
@@ -59,7 +62,7 @@ const Editor: React.FC<LogProtocol> = props => {
     e?.preventDefault();
 
     if (text != null && text.trim() !== "") {
-      props.createLog(text, props.selectedDate);
+      createLog(text, selectedDate);
       setText("");
     }
   };
@@ -76,7 +79,7 @@ const Editor: React.FC<LogProtocol> = props => {
           sx={{ minHeight: "90px" }}
           value={text}
           placeholder={`What did you do on ${format(
-            props.selectedDate,
+            selectedDate,
             "iiii, MMMM do",
           )}?`}
           onChange={e => changeText(e.target.value)}
@@ -99,9 +102,9 @@ const Editor: React.FC<LogProtocol> = props => {
       >
         <Box sx={{ display: ["block", "none"] }}>
           <DatePicker
-            initialValue={props.selectedDate}
+            initialValue={selectedDate}
             onDateChanged={date => changeDate(date, false)}
-            highlighted={Object.values(props.logs).map(l => new Date(l.date))}
+            highlighted={Object.values(logs).map(l => new Date(l.date))}
           />
         </Box>
 
@@ -115,9 +118,9 @@ const Editor: React.FC<LogProtocol> = props => {
 
       <Box sx={{ pt: 2, display: ["none", "block"] }}>
         <Calendar
-          initialValue={props.selectedDate}
+          initialValue={selectedDate}
           onDateChanged={date => changeDate(date, true)}
-          highlighted={Object.values(props.logs).map(l => new Date(l.date))}
+          highlighted={Object.values(logs).map(l => new Date(l.date))}
         />
       </Box>
     </Box>

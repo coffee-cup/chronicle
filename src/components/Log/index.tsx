@@ -18,7 +18,7 @@ const Log: React.FC = () => {
         width: "100%",
       }}
     >
-      <Box sx={{ flexGrow: 1, pr: [0, 2] }}>
+      <Box sx={{ flexGrow: 1, pr: [0, 2], maxWidth: "100%" }}>
         {loading && (
           <Flex sx={{ justifyContent: "center", py: 2 }}>
             <Spinner />
@@ -30,7 +30,7 @@ const Log: React.FC = () => {
         <LogList />
       </Box>
 
-      <Box sx={{ width: ["100%", "300px", "400px"] }}>
+      <Box sx={{ minWidth: ["100%", "300px", "400px"] }}>
         <Editor />
       </Box>
     </Box>

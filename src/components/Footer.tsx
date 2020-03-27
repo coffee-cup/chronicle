@@ -36,7 +36,8 @@ const Footer = () => (
       }}
     >
       <Box>
-        Created with ♥ by <Link to="https://jakerunzer.com">jake runzer</Link>
+        Created with &hearts; by{" "}
+        <Link to="https://jakerunzer.com">jake runzer</Link>
       </Box>
       <Links />
     </Box>

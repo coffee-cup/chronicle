@@ -37,6 +37,7 @@ const LogItem: React.FC<Props> = props => (
       className="trash"
       sx={{
         position: "absolute",
+        p: 0,
         top: 1,
         right: 0,
         opacity: 0,

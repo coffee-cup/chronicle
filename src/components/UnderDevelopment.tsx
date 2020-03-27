@@ -6,14 +6,14 @@ const UnderDevelopment = () => (
   <Box
     sx={{
       display: "flex",
-      alignItems: ["flex-start", "center"],
-      flexDirection: ["column", "row"],
+      alignItems: "center",
+      bg: "accent",
       py: 2,
+      px: [3, 2],
+      mx: [-3, 0],
     }}
   >
-    <Box sx={{ display: "flex", alignItems: "center", mb: [2, 0], mr: 2 }}>
-      <AlertTriangle size={18} />
-    </Box>
+    <AlertTriangle size={18} sx={{ mr: 2 }} />
     Chronicle is in beta and under active development
   </Box>
 );

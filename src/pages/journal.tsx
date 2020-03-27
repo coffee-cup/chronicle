@@ -7,6 +7,7 @@ import useFirebaseLogs from "../hooks/use-firebase-logs";
 import useLocalLogs from "../hooks/use-local-logs";
 import useLogsType from "../hooks/use-logs-type";
 import { LogsProvider } from "../hooks/use-logs";
+import UnderDevelopment from "../components/UnderDevelopment";
 
 const FirebaseLogs: React.FC = props => {
   const logs = useFirebaseLogs();
@@ -25,6 +26,8 @@ const LogsPage = () => {
 
   return (
     <Layout>
+      <UnderDevelopment />
+
       <Box>
         <Greeting logsType={logsType} />
 

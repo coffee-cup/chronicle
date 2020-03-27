@@ -30,16 +30,11 @@ const Greeting: React.FC<Props> = props => {
 
       <Box sx={{ maxWidth: "measure" }}>
         {props.logsType === "local" && (
-          <Styled.p>
-            These logs are only persisted in this browser's local storage. If
-            you want to be able to access them on multiple devices,{" "}
-            <Link href="/signup">create an account</Link> or{" "}
-            <Link href="/login">login</Link>.
+          <Styled.p sx={{ my: 2 }}>
+            <Link href="/login">Login</Link> or{" "}
+            <Link href="/signup">signup</Link> to access your journal on
+            multiple devices.
           </Styled.p>
-        )}
-
-        {props.logsType === "firebase" && (
-          <Styled.p>Remember what you've done with your life.</Styled.p>
         )}
       </Box>
     </Box>

@@ -3,7 +3,7 @@ import * as React from "react";
 import { getGroupForDate, newLog, getLocalLogs, saveLocalLogs } from "../logs";
 import { KeyedLogs, LogProtocol } from "../types";
 
-const startingLogs: KeyedLogs = [
+const initialLogs: KeyedLogs = [
   newLog(
     "They are small, bite size, and simply explain one thing you did",
     new Date(),
@@ -23,23 +23,30 @@ const startingLogs: KeyedLogs = [
   {},
 );
 
-const initialLogs = getLocalLogs(startingLogs);
-
 const useLocalLogs = (): LogProtocol => {
-  const [logs, setLogs] = React.useState<KeyedLogs>(initialLogs);
+  const [logs, setLogs] = React.useState<KeyedLogs>({});
   const [selectedDate, setSelectedDate] = React.useState<Date>(
     new Date(new Date().toDateString()),
   );
+  const fetchedLocal = React.useRef(false);
   const firstRun = React.useRef(true);
 
   React.useEffect(() => {
-    // only save the logs if the user has edited them
-    if (!firstRun.current) {
+    if (fetchedLocal.current && !firstRun.current) {
       saveLocalLogs(logs);
     }
 
-    firstRun.current = false;
+    if (fetchedLocal.current) {
+      firstRun.current = false;
+    }
   }, [logs]);
+
+  React.useEffect(() => {
+    const logs = getLocalLogs(initialLogs);
+    setLogs(logs);
+
+    fetchedLocal.current = true;
+  }, []);
 
   const createLog = (text: string, date: Date) => {
     const logGroup = getGroupForDate(date, logs);

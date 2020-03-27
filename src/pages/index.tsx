@@ -4,10 +4,13 @@ import { Box, Flex, Grid, jsx, Styled } from "theme-ui";
 import Layout from "../components/Layout";
 import Link from "../components/Link";
 
+const Section: React.FC = props => <Box sx={{ py: [4] }}>{props.children}</Box>;
+
 const Feature: React.FC<{ title: string; comingSoon?: boolean }> = props => (
   <Box
     sx={{
       maxWidth: "narrow",
+      fontSize: 3,
       mx: ["auto", 0],
       ...(props.comingSoon
         ? {
@@ -27,14 +30,8 @@ const Feature: React.FC<{ title: string; comingSoon?: boolean }> = props => (
 );
 
 const Features: React.FC = () => (
-  <Box sx={{ pt: 3 }}>
+  <Section>
     <Styled.h2>Features</Styled.h2>
-    <Box sx={{ maxWidth: "measure" }}>
-      <Styled.p>
-        Chronicle journals are designed to be short and to the point. No fluff
-        or hooey. Think, point-form lists of your day.
-      </Styled.p>
-    </Box>
     <Grid gap={3} columns={[null, 2]}>
       <Feature title="Clean">
         Minimal interface that stays our of your way.
@@ -58,12 +55,12 @@ const Features: React.FC = () => (
         Export your journal to markdown or text format.
       </Feature>
     </Grid>
-  </Box>
+  </Section>
 );
 
 const Home = () => (
   <Layout>
-    <Box sx={{ pb: [5, 6], textAlign: ["center", "left"] }}>
+    <Box sx={{ textAlign: ["center", "left"] }}>
       <Grid gap={4} sx={{ py: [5, 6] }}>
         <Styled.h1 sx={{ my: 0 }}>No-Nonsense Journaling</Styled.h1>
 
@@ -82,6 +79,13 @@ const Home = () => (
           </Link>
         </Box>
       </Grid>
+
+      <Section>
+        <Styled.p sx={{ maxWidth: "measure", fontSize: 3 }}>
+          Chronicle journals are designed to be short and to the point. No fluff
+          or hooey. Think, point-form lists of your day.
+        </Styled.p>
+      </Section>
 
       <Features />
     </Box>

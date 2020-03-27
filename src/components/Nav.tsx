@@ -38,8 +38,8 @@ const Nav: React.FC = () => {
 
   return (
     <Flex as="nav">
-      <NavLink as={Link} href="/logs">
-        logs
+      <NavLink as={Link} href="/journal">
+        journal
       </NavLink>
 
       <NavLink as={Link} href="/faq">

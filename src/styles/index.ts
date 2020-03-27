@@ -120,6 +120,7 @@ const theme: Theme = {
     container: "1000px",
     logList: "400px",
     measure: "32em",
+    narrow: "22em",
     header: "6rem",
   },
 
@@ -194,6 +195,14 @@ const theme: Theme = {
       "&:hover": {
         ...baseLink["&:hover"],
       },
+    },
+    footer: {
+      ...baseLink,
+      px: 2,
+      py: 1,
+      fontSize: 2,
+      textDecoration: "none",
+      textTransform: "lowercase",
     },
     empty: {
       ...baseLink,

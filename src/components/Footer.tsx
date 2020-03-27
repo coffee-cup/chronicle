@@ -1,26 +1,46 @@
 /** @jsx jsx */
-import styled from "@emotion/styled";
-import css from "@styled-system/css";
-import { jsx } from "theme-ui";
+import * as React from "react";
+import { jsx, Box } from "theme-ui";
 import Link from "./Link";
+import UnderDevelopment from "./UnderDevelopment";
 
-const StyledFooter = styled.footer(
-  css({
-    display: "flex",
-    alignItems: "center",
-  }),
+const Links: React.FC = () => (
+  <Box sx={{ py: 3 }}>
+    <Link variant="footer" href="/faq">
+      faq
+    </Link>
+    <Link variant="footer" href="/me">
+      profile
+    </Link>
+    <Link variant="footer" href="https://twitter.com/jakerunzer">
+      contact
+    </Link>
+  </Box>
 );
 
 const Footer = () => (
-  <StyledFooter>
-    <div
+  <Box
+    as="footer"
+    sx={{
+      pt: [5, 6],
+      pb: 4,
+      textAlign: ["center", "left"],
+    }}
+  >
+    <Box
       sx={{
-        py: 4,
+        display: ["block", "flex"],
+        alignItems: "center",
+        justifyContent: "space-between",
+        pt: 2,
       }}
     >
-      Created with ♥ by <Link to="https://jakerunzer.com">jake runzer</Link>
-    </div>
-  </StyledFooter>
+      <Box>
+        Created with ♥ by <Link to="https://jakerunzer.com">jake runzer</Link>
+      </Box>
+      <Links />
+    </Box>
+  </Box>
 );
 
 export default Footer;

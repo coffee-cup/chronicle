@@ -27,29 +27,38 @@ const Feature: React.FC<{ title: string; comingSoon?: boolean }> = props => (
 );
 
 const Features: React.FC = () => (
-  <Grid gap={3} columns={[null, 2]}>
-    <Feature title="Clean">
-      Minimal interface that stays our of your way.
-    </Feature>
-    <Feature title="Local">
-      Journals can be used locally without an account. All data is stored in the
-      browser
-    </Feature>
-    <Feature title="Use anywhere">
-      Create an account when you want to access your journal on more than one
-      device.
-    </Feature>
-    <Feature title="Privacy first">
-      No tracking, ads, or pushy recommendations. Delete your account and data
-      at any time.
-    </Feature>
-    <Feature title="Dark mode">
-      Use while lying in bed without waking your date.
-    </Feature>
-    <Feature title="Export" comingSoon>
-      Export your journal to markdown or text format.
-    </Feature>
-  </Grid>
+  <Box sx={{ pt: 3 }}>
+    <Styled.h2>Features</Styled.h2>
+    <Box sx={{ maxWidth: "measure" }}>
+      <Styled.p>
+        Chronicle journals are designed to be short and to the point. No fluff
+        or hooey. Think, point-form lists of your day.
+      </Styled.p>
+    </Box>
+    <Grid gap={3} columns={[null, 2]}>
+      <Feature title="Clean">
+        Minimal interface that stays our of your way.
+      </Feature>
+      <Feature title="No account needed">
+        Journals can be used locally without an account. All data is stored in
+        the browser.
+      </Feature>
+      <Feature title="Use anywhere">
+        Create an account when you want to access your journal on more than one
+        device.
+      </Feature>
+      <Feature title="Privacy first">
+        No tracking, ads, or pushy recommendations. Delete your account and data
+        at any time.
+      </Feature>
+      <Feature title="Dark mode">
+        Use while lying in bed without waking your date.
+      </Feature>
+      <Feature title="Export" comingSoon>
+        Export your journal to markdown or text format.
+      </Feature>
+    </Grid>
+  </Box>
 );
 
 const Home = () => (

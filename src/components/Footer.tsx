@@ -9,7 +9,7 @@ const Links: React.FC = () => (
     <Link variant="footer" href="/faq">
       faq
     </Link>
-    <Link variant="footer" href="/me">
+    <Link variant="footer" href="/profile">
       profile
     </Link>
     <Link variant="footer" href="https://twitter.com/jakerunzer">

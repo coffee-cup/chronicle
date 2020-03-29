@@ -11,9 +11,10 @@ const UnderDevelopment = () => (
       py: 2,
       px: [3, 2],
       mx: [-3, 0],
+      fontSize: 1,
     }}
   >
-    <AlertTriangle size={18} sx={{ mr: 2 }} />
+    <AlertTriangle size={18} sx={{ mr: 2, display: ["none", "inline"] }} />
     Chronicle is in beta and under active development
   </Box>
 );

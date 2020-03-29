@@ -1,8 +1,7 @@
 /** @jsx jsx */
 import * as React from "react";
-import { jsx, Box } from "theme-ui";
+import { jsx, Box, Text } from "theme-ui";
 import Link from "./Link";
-import UnderDevelopment from "./UnderDevelopment";
 
 const Links: React.FC = () => (
   <Box sx={{ py: 3 }}>
@@ -29,16 +28,17 @@ const Footer = () => (
   >
     <Box
       sx={{
-        display: ["block", "flex"],
+        display: ["flex"],
+        flexDirection: ["column-reverse", "row"],
         alignItems: "center",
         justifyContent: "space-between",
         pt: 2,
       }}
     >
-      <Box>
+      <Text sx={{ fontSize: 1 }}>
         Created with &hearts; by{" "}
         <Link to="https://jakerunzer.com">jake runzer</Link>
-      </Box>
+      </Text>
       <Links />
     </Box>
   </Box>

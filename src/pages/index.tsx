@@ -1,10 +1,14 @@
 /** @jsx jsx */
 import { Clock } from "react-feather";
-import { Box, Flex, Grid, jsx, Styled } from "theme-ui";
+import { Box, Flex, Grid, Text, jsx, Styled } from "theme-ui";
 import Layout from "../components/Layout";
 import Link from "../components/Link";
 
-const Section: React.FC = props => <Box sx={{ py: [4] }}>{props.children}</Box>;
+const Section: React.FC = props => (
+  <Box sx={{ py: [4] }} {...props}>
+    {props.children}
+  </Box>
+);
 
 const Feature: React.FC<{ title: string; comingSoon?: boolean }> = props => (
   <Box
@@ -20,9 +24,9 @@ const Feature: React.FC<{ title: string; comingSoon?: boolean }> = props => (
     }}
   >
     <Styled.h3 sx={{ mb: 2 }}>{props.title}</Styled.h3>
-    <Styled.p>{props.children}</Styled.p>
+    <Text>{props.children}</Text>
     {props.comingSoon && (
-      <Flex sx={{ alignItems: "center" }}>
+      <Flex sx={{ alignItems: "center", pt: 2 }}>
         <Clock size={18} sx={{ mr: 2 }} /> Coming soon
       </Flex>
     )}
@@ -31,7 +35,13 @@ const Feature: React.FC<{ title: string; comingSoon?: boolean }> = props => (
 
 const Features: React.FC = () => (
   <Section>
-    <Styled.h2>Features</Styled.h2>
+    <Styled.h2 sx={{ mb: 0 }}>Features</Styled.h2>
+
+    <Text sx={{ maxWidth: "measure", fontSize: 3, py: 3 }}>
+      Chronicle journals are designed to be short and to the point. <br />
+      No fluff or hooey. Think, point-form lists of your day.
+    </Text>
+
     <Grid gap={3} columns={[null, 2]}>
       <Feature title="Clean">
         Minimal interface that stays our of your way.
@@ -60,32 +70,25 @@ const Features: React.FC = () => (
 
 const Home = () => (
   <Layout>
-    <Box sx={{ textAlign: ["center", "left"] }}>
-      <Grid gap={4} sx={{ py: [5, 6] }}>
+    <Box sx={{}}>
+      <Grid gap={4} sx={{ py: [5, 6], textAlign: ["center", "left"] }}>
         <Styled.h1 sx={{ my: 0 }}>No-Nonsense Journaling</Styled.h1>
 
-        <Styled.p sx={{ fontSize: [2, 3], maxWidth: "28rem", my: 0 }}>
+        <Text sx={{ fontSize: [3], maxWidth: "28rem", my: 0 }}>
           Chronicle is a lightweight journaling app where you record highlights
           of your day
-        </Styled.p>
+        </Text>
 
         <Box>
           <Link
             href="/journal"
             variant="button"
-            sx={{ width: ["100%", "auto"] }}
+            sx={{ width: ["100%", "auto"], py: 2 }}
           >
             Start Journalling
           </Link>
         </Box>
       </Grid>
-
-      <Section>
-        <Styled.p sx={{ maxWidth: "measure", fontSize: 3 }}>
-          Chronicle journals are designed to be short and to the point. No fluff
-          or hooey. Think, point-form lists of your day.
-        </Styled.p>
-      </Section>
 
       <Features />
     </Box>

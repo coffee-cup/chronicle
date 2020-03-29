@@ -14,7 +14,7 @@ const LogItem: React.FC<Props> = props => (
     sx={{
       position: "relative",
       py: 2,
-      pr: 2,
+      px: 2,
       whiteSpace: "pre-wrap",
       lineHeight: "body",
       overflow: "hidden",

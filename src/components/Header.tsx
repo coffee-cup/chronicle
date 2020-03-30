@@ -7,7 +7,7 @@ import Nav from "./Nav";
 const Header: React.FC<{ home?: string }> = props => (
   <Flex
     sx={{
-      py: 3,
+      py: [2, 3],
       alignItems: "center",
       justifyContent: "space-between",
     }}

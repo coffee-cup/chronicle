@@ -28,7 +28,7 @@ const baseLink = {
   transition: "all 150ms ease-in-out",
   cursor: "pointer",
 
-  "&:hover,&:focus": {
+  "&:hover,&:focus,&:active": {
     color: "text",
     bg: "accent",
   },
@@ -40,6 +40,7 @@ const baseInput = {
 
   "&:focus": {
     borderColor: "accent",
+    outline: "none",
   },
 
   "&.error": {

@@ -5,14 +5,14 @@ import Link from "./Link";
 
 const Links: React.FC = () => (
   <Box sx={{ py: 3 }}>
+    <Link variant="footer" href="https://twitter.com/chronicle_ink">
+      twitter
+    </Link>
     <Link variant="footer" href="/faq">
       faq
     </Link>
     <Link variant="footer" href="/profile">
       profile
-    </Link>
-    <Link variant="footer" href="https://twitter.com/jakerunzer">
-      contact
     </Link>
   </Box>
 );

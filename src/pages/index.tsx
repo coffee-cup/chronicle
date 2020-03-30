@@ -23,7 +23,7 @@ const Feature: React.FC<{ title: string; comingSoon?: boolean }> = props => (
         : {}),
     }}
   >
-    <Styled.h3 sx={{ mb: 2 }}>{props.title}</Styled.h3>
+    <Styled.h3>{props.title}</Styled.h3>
     <Text>{props.children}</Text>
     {props.comingSoon && (
       <Flex sx={{ alignItems: "center", pt: 2 }}>

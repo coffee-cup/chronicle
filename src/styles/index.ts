@@ -85,6 +85,8 @@ const theme: Theme = {
       700: "#666565",
     },
     error: "red",
+    datesOutside: "#cecece",
+    datesInside: "#999999",
 
     modes: {
       dark: {
@@ -94,6 +96,8 @@ const theme: Theme = {
         secondary: darkColor,
         muted: "#313030",
         accent: "#c37620",
+        datesOutside: "#808080",
+        datesInside: "#a3a3a3",
       },
     },
   },
@@ -261,6 +265,7 @@ const theme: Theme = {
     h3: {
       variant: "textStyles.heading",
       fontSize: 4,
+      mb: 3,
     },
     h4: {
       variant: "textStyles.heading",

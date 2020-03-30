@@ -41,13 +41,13 @@ const Calendar: React.FC<Props> = props => {
       sx={{
         textAlign: "right",
         ".nice-dates-day": {
-          color: "grey.600",
+          color: "datesInside",
         },
         ".nice-dates-navigation": {
           color: "text",
         },
         ".-outside": {
-          color: "grey.400",
+          color: "datesOutside",
         },
         ".-today": {
           fontWeight: "bold",

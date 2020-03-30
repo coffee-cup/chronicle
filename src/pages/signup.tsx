@@ -35,7 +35,7 @@ const Signup = () => {
     <Layout title="Signup">
       <Flex
         sx={{
-          py: 5,
+          py: [4, 5],
           alignItems: "center",
           justifyContent: "center",
           width: "100%",

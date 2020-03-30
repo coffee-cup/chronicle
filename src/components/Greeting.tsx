@@ -15,9 +15,8 @@ const Greeting: React.FC<Props> = props => {
       <Box sx={{ maxWidth: "measure" }}>
         {props.logsType === "local" && (
           <Styled.p sx={{ my: 2 }}>
-            <Link href="/login">Login</Link> or{" "}
-            <Link href="/signup">signup</Link> to access your journal on
-            multiple devices.
+            <Link href="/login">Login</Link> to access your journal on multiple
+            devices.
           </Styled.p>
         )}
       </Box>

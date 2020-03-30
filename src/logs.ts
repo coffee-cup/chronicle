@@ -86,8 +86,9 @@ export const newLog = (
 
 const localLogKey = "@local-logs";
 
-export const getLocalLogs = (defaultValue: KeyedLogs): KeyedLogs =>
-  getItem(localLogKey, defaultValue, deserializeLogs);
+export const getLocalLogs = async (
+  defaultValue: KeyedLogs,
+): Promise<KeyedLogs> => getItem(localLogKey, defaultValue, deserializeLogs);
 
 export const saveLocalLogs = (logs: KeyedLogs) =>
   saveItem(localLogKey, logs, serializeLogs);

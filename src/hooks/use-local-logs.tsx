@@ -42,10 +42,12 @@ const useLocalLogs = (): LogProtocol => {
   }, [logs]);
 
   React.useEffect(() => {
-    const logs = getLocalLogs(initialLogs);
-    setLogs(logs);
+    (async () => {
+      const logs = await getLocalLogs(initialLogs);
+      setLogs(logs);
 
-    fetchedLocal.current = true;
+      fetchedLocal.current = true;
+    })();
   }, []);
 
   const createLog = (text: string, date: Date) => {

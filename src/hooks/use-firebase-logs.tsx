@@ -39,7 +39,7 @@ const createFirebaseLog = (
 };
 
 const saveLocalLogs = async (user: firebase.User) => {
-  const localLogs = getLocalLogs({});
+  const localLogs = await getLocalLogs({});
   if (Object.keys(localLogs).length === 0) {
     return;
   }

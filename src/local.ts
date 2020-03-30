@@ -1,16 +1,16 @@
-import { DeserializeFn, SerializeFn, KeyedLogs } from "./types";
-import { deserializeLogs, serializeLogs } from "./logs";
+import * as localForage from "localforage";
+import { DeserializeFn, SerializeFn } from "./types";
 
 const defaultSerializeFn: SerializeFn = JSON.stringify;
 const defaultDeserializeFn: DeserializeFn = JSON.parse;
 
-export const getItem = <T>(
+export const getItem = async <T>(
   key: string,
   defaultValue: T,
   deserializeFn: DeserializeFn = defaultDeserializeFn,
-): T => {
+): Promise<T> => {
   try {
-    const item = localStorage.getItem(key);
+    const item = await localForage.getItem<any>(key);
     return deserializeFn(item);
   } catch (e) {
     return defaultValue;
@@ -24,12 +24,12 @@ export const saveItem = <T>(
 ) => {
   try {
     const item = serializeFn(value);
-    localStorage.setItem(key, item);
+    localForage.setItem(key, item);
   } catch (e) {}
 };
 
 export const clearItem = (key: string) => {
   try {
-    localStorage.removeItem(key);
+    localForage.removeItem(key);
   } catch (e) {}
 };

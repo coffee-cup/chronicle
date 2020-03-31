@@ -16,7 +16,7 @@ const Faq = () => {
     <Layout title="FAQ">
       <Flex
         sx={{
-          py: 5,
+          py: [4, 5],
           width: "100%",
         }}
       >
@@ -83,9 +83,9 @@ const Faq = () => {
 
           <Question title="How do I delete my account">
             <Styled.p>
-              Head to <Link href="/pref">/profile</Link> and there are options
-              for deleting all your entires or all your entries+account. Careful
-              though, these actions are permanant.
+              Head to <Link href="/profile">/profile</Link> and there are
+              options for deleting all your entires or all your entries+account.
+              Careful though, these actions are permanant.
             </Styled.p>
           </Question>
 

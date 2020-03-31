@@ -13,7 +13,8 @@ const Section: React.FC = props => (
 const Feature: React.FC<{ title: string; comingSoon?: boolean }> = props => (
   <Box
     sx={{
-      maxWidth: "narrow",
+      maxWidth: ["100%", "narrow"],
+      width: "100%",
       fontSize: 3,
       mx: ["auto", 0],
       ...(props.comingSoon
@@ -70,11 +71,11 @@ const Features: React.FC = () => (
 
 const Home = () => (
   <Layout>
-    <Box sx={{}}>
+    <Box>
       <Grid gap={4} sx={{ py: [5, 6], textAlign: ["center", "left"] }}>
-        <Styled.h1 sx={{ my: 0 }}>No-Nonsense Journaling</Styled.h1>
+        <Styled.h1 sx={{ mb: 0 }}>No-Nonsense Journaling</Styled.h1>
 
-        <Text sx={{ fontSize: [3], maxWidth: "28rem", my: 0 }}>
+        <Text sx={{ fontSize: [3], maxWidth: "28rem", my: 0, mx: ["auto", 0] }}>
           Chronicle is a lightweight journaling app where you record highlights
           of your day
         </Text>

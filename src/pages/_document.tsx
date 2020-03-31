@@ -45,6 +45,11 @@ class MyDocument extends Document {
             href="/apple-touch-icon.png"
           />
           <link rel="manifest" href="/site.webmanifest" />
+
+          <link
+            href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap"
+            rel="stylesheet"
+          />
         </Head>
 
         <body>

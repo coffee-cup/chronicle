@@ -36,7 +36,7 @@ const Footer = () => (
       }}
     >
       <Text sx={{ fontSize: [1, 2] }}>
-        Created with &hearts; by{" "}
+        Created with <span sx={{ color: "crimson" }}>&hearts;</span> by{" "}
         <Link to="https://jakerunzer.com">jake runzer</Link>
       </Text>
       <Links />

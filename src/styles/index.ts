@@ -116,7 +116,7 @@ const theme: Theme = {
 
   fonts: {
     body: font,
-    heading: `"Montserrat", ${font}`,
+    heading: font,
     monospace: "Consolas, Liberation Mono, Menlo, Courier, monospace",
   },
 

@@ -72,10 +72,18 @@ const Features: React.FC = () => (
 const Home = () => (
   <Layout>
     <Box>
-      <Grid gap={4} sx={{ py: [5, 6], textAlign: ["center", "left"] }}>
-        <Styled.h1 sx={{ mb: 0 }}>No-Nonsense Journaling</Styled.h1>
+      <Box sx={{ py: [5, 6], textAlign: ["center", "left"] }}>
+        <Styled.h1 sx={{ mb: 3 }}>No-Nonsense Journaling</Styled.h1>
 
-        <Text sx={{ fontSize: [3], maxWidth: "28rem", my: 0, mx: ["auto", 0] }}>
+        <Text
+          sx={{
+            fontSize: [3],
+            maxWidth: "28rem",
+            mt: 0,
+            mb: 4,
+            mx: ["auto", 0],
+          }}
+        >
           Chronicle is a lightweight journaling app where you record highlights
           of your day
         </Text>
@@ -89,7 +97,7 @@ const Home = () => (
             Start Journalling
           </Link>
         </Box>
-      </Grid>
+      </Box>
 
       <Features />
     </Box>

@@ -1,14 +1,23 @@
 import { subDays } from "date-fns";
 import * as React from "react";
-import { getGroupForDate, newLog, getLocalLogs, saveLocalLogs } from "../logs";
+import {
+  getGroupForDate,
+  newLog,
+  getLocalLogs,
+  saveLocalLogs,
+  clearLocalLogs,
+} from "../logs";
 import { KeyedLogs, LogProtocol } from "../types";
 
 const initialLogs: KeyedLogs = [
-  newLog(
-    "Journal entries are small and explain one thing you did",
-    subDays(new Date(), 1),
-    0,
-  ),
+  {
+    ...newLog(
+      "Journal entries are small and explain one thing you did",
+      subDays(new Date(), 1),
+      0,
+    ),
+    order: 1,
+  },
   newLog("Try creating one yourself ʕ•̮͡•ʔ", subDays(new Date(), 1), 0),
 ].reduce(
   (acc, log) => ({
@@ -62,6 +71,10 @@ const useLocalLogs = (): LogProtocol => {
     setLogs({ ...logs });
   };
 
+  const deleteAllLogs = () => {
+    clearLocalLogs();
+  };
+
   const protocol: LogProtocol = {
     loading: false,
     error: null,
@@ -70,6 +83,7 @@ const useLocalLogs = (): LogProtocol => {
     setSelectedDate,
     createLog,
     deleteLog,
+    deleteAllLogs,
   };
 
   return protocol;

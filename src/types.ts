@@ -19,6 +19,7 @@ export interface LogProtocol {
   setSelectedDate: (date: Date) => void;
   createLog: (text: string, date: Date, order?: number) => void;
   deleteLog: (id: string) => void;
+  deleteAllLogs: () => void;
 }
 
 export type SerializeFn<T = any> = (data: T) => string;

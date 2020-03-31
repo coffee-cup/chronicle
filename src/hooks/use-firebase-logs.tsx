@@ -130,6 +130,14 @@ const useFirebaseLogs = (): LogProtocol => {
     return () => unsubscribe();
   }, [user]);
 
+  const deleteAllLogs = () => {
+    const batch = firestore.batch();
+    Object.keys(logs).forEach(k => {
+      batch.delete(firestore.collection(logsCollection).doc(k));
+    });
+    batch.commit();
+  };
+
   const protocol: LogProtocol = {
     loading,
     error,
@@ -138,6 +146,7 @@ const useFirebaseLogs = (): LogProtocol => {
     setSelectedDate,
     createLog,
     deleteLog,
+    deleteAllLogs,
   };
 
   return protocol;

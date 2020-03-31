@@ -1,42 +1,80 @@
 /** @jsx jsx */
-import { useRouter } from "next/router";
-import { Box, Button, jsx, Spinner, Styled, Text, Flex } from "theme-ui";
+import * as React from "react";
+import { Box, Button, Flex, jsx, Spinner, Text, Styled } from "theme-ui";
 import Layout from "../components/Layout";
-import useUser from "../hooks/use-user";
 import Link from "../components/Link";
+import { LogsProvider, useLogs } from "../hooks/use-logs";
+import useUser from "../hooks/use-user";
 
-const Me = () => {
-  const { user, loading, logout } = useUser();
-  const router = useRouter();
+const Section: React.FC = props => <Box {...props} sx={{ pb: 4 }} />;
+
+const Options: React.FC = () => {
+  const { user, logout } = useUser();
+  const { deleteAllLogs } = useLogs();
+
+  const [message, setMessage] = React.useState("");
+
+  React.useEffect(() => {
+    if (message !== "") {
+      const timeout = setTimeout(() => {
+        setMessage("");
+      }, 2000);
+
+      return () => clearTimeout(timeout);
+    }
+  }, [message]);
+
+  const deleteAllData = () => {
+    const result = window.confirm(
+      "Are you sure you want to delete your journal?",
+    );
+    if (result) {
+      deleteAllLogs();
+      setMessage("Journal data was deleted");
+    }
+  };
 
   return (
-    <Layout>
-      <Box
-        sx={{
-          pt: 6,
-        }}
-      >
-        {loading && <Spinner />}
-
-        {!loading && user != null && (
+    <Box className="options">
+      {message !== "" && (
+        <Box
+          sx={{
+            py: 2,
+            px: 3,
+            mb: 3,
+            bg: "accent",
+          }}
+        >
+          {message}
+        </Box>
+      )}
+      <Section>
+        {user != null ? (
           <Box>
-            <Text sx={{ fontSize: 4 }}>You are logged in as</Text>
-            <Styled.h3 sx={{ mt: 3 }}>{user.email}</Styled.h3>
+            <Text>You are logged in as</Text>
+            <Text variant="heading" sx={{ my: 2, fontSize: 4 }}>
+              {user.email}
+            </Text>
 
-            <Button
-              onClick={() => {
-                logout();
-              }}
-            >
-              Logout
-            </Button>
+            <Box sx={{ pt: 2 }}>
+              <Button
+                onClick={() => {
+                  logout();
+                }}
+              >
+                Logout
+              </Button>
+            </Box>
           </Box>
-        )}
+        ) : (
+          <Box sx={{ maxWidth: "measure" }}>
+            <Text>You are not logged in</Text>
+            <Text sx={{ mt: 2 }}>
+              Chronicle accounts allow you to access your journal on all
+              devices.
+            </Text>
 
-        {!loading && user == null && (
-          <Box>
-            <Text sx={{ fontSize: 4 }}>You are not logged in</Text>
-            <Flex sx={{ mt: 3 }}>
+            <Flex sx={{ pt: 3 }}>
               <Link href="/login" variant="button" sx={{ mr: 2 }}>
                 Login
               </Link>
@@ -47,9 +85,42 @@ const Me = () => {
             </Flex>
           </Box>
         )}
+      </Section>
+
+      <Section>
+        <Text sx={{ mb: 2, fontSize: 4, fontWeight: "bold" }}>Danger Zone</Text>
+        <Text>Careful, this is permanent</Text>
+
+        <Box sx={{ pt: 3 }}>
+          <Button onClick={() => deleteAllData()}>Delete all data</Button>
+        </Box>
+      </Section>
+    </Box>
+  );
+};
+
+const Profile = () => {
+  const { loading } = useUser();
+
+  return (
+    <Layout>
+      <Box
+        sx={{
+          pt: [4, 5],
+        }}
+      >
+        <Styled.h1>Profile</Styled.h1>
+
+        {loading ? (
+          <Spinner />
+        ) : (
+          <LogsProvider>
+            <Options />
+          </LogsProvider>
+        )}
       </Box>
     </Layout>
   );
 };
 
-export default Me;
+export default Profile;

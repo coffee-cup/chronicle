@@ -86,6 +86,7 @@ const theme: Theme = {
       700: "#666565",
     },
     error: "red",
+    success: "green",
     datesOutside: "#cecece",
     datesInside: "#999999",
 

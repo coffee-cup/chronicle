@@ -81,11 +81,11 @@ const Faq = () => {
             </Styled.p>
           </Question>
 
-          <Question title="How do I delete my account">
+          <Question title="How do I delete my data">
             <Styled.p>
-              Head to <Link href="/profile">/profile</Link> and there are
-              options for deleting all your entires or all your entries+account.
-              Careful though, these actions are permanant.
+              Head to <Link href="/profile">/profile</Link> and there is an
+              option for deleting all data in your journal. Careful though, this
+              action is permanant.
             </Styled.p>
           </Question>
 

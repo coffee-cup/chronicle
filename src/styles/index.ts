@@ -55,13 +55,13 @@ const baseButton = {
   py: 1,
   borderRadius: 0,
   border: "solid 2px",
-  borderColor: "primary",
+  borderColor: "currentColor",
   transition: "all 150ms ease-in-out",
 
   "&:hover": {
     color: "primary",
     bg: "secondary",
-    boxShadow: "4px 4px 0px 0px black",
+    boxShadow: "4px 4px 0px 0px var(--theme-ui-colors-text, black)",
   },
 };
 
@@ -138,13 +138,12 @@ const theme: Theme = {
   buttons: {
     primary: baseButton,
     secondary: {
+      ...baseButton,
       color: "text",
-      backgroundColor: "muted",
-      cursor: "pointer",
+      bg: "background",
 
       "&:hover": {
-        bg: "black",
-        color: "white",
+        boxShadow: "none",
       },
     },
     icon: {
@@ -152,13 +151,14 @@ const theme: Theme = {
     },
     subtle: {
       ...baseButton,
+      py: 0,
       color: "text",
-      bg: "transparent",
-      py: 1,
-      borderColor: "text",
+      bg: "muted",
+      border: "none",
 
       "&:hover": {
         boxShadow: "none",
+        bg: "accent",
       },
     },
   },

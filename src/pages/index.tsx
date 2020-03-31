@@ -62,7 +62,7 @@ const Features: React.FC = () => (
       <Feature title="Dark mode">
         Use while lying in bed without waking your date.
       </Feature>
-      <Feature title="Export" comingSoon>
+      <Feature title="Export">
         Export your journal to markdown or json format.
       </Feature>
     </Grid>
@@ -94,7 +94,7 @@ const Home = () => (
             variant="button"
             sx={{ width: ["100%", "auto"], py: 2 }}
           >
-            Start Journalling
+            Start Journaling
           </Link>
         </Box>
       </Box>

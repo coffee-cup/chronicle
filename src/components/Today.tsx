@@ -20,7 +20,9 @@ const Today: React.FC<{ empty: boolean }> = props => {
       }}
     >
       <Box sx={{ pr: [0, 3], width: "100%" }}>
-        <Text sx={{ fontSize: 3, pb: 2 }}>φ（．．）</Text>
+        <Text sx={{ fontSize: 3, pb: 2 }}>
+          <span sx={{ color: "accent" }}>φ</span>（．．）
+        </Text>
 
         <Text>Jot down a highlight of the day</Text>
       </Box>

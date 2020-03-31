@@ -1,4 +1,4 @@
-import { getDayOfYear, getYear } from "date-fns";
+import { getDayOfYear, getYear, format, lightFormat } from "date-fns";
 import { groupBy, orderBy, sortBy } from "lodash";
 import * as uuid from "uuid";
 import { clearItem, getItem, saveItem } from "./local";
@@ -82,6 +82,50 @@ export const newLog = (
   };
 
   return log;
+};
+
+export const exportToMarkdown = (logs: KeyedLogs): string => {
+  const { keys, groups } = getLogGroups(logs);
+
+  const dateFormat = "MMMM do, yyyy";
+
+  let s = `# Chronicle journal
+Exported from [chronicle.ink](https://chronicle.ink) on ${format(
+    new Date(),
+    dateFormat,
+  )}\n`;
+
+  for (const k of keys) {
+    s += `\n## ${format(groups[k][0].date, dateFormat)}\n\n`;
+
+    for (const log of groups[k]) {
+      s += `- ${log.text}\n`;
+    }
+  }
+
+  return s;
+};
+
+export const exportToJson = (logs: KeyedLogs): string => {
+  const { keys, groups } = getLogGroups(logs);
+
+  const dateFormat = "yyyy-MM-dd";
+  const obj: any = {};
+
+  for (const k of keys) {
+    const d = format(groups[k][0].date, dateFormat);
+    obj[d] = [];
+
+    for (const log of groups[k]) {
+      obj[d].push({
+        text: log.text,
+        date: format(log.date, dateFormat),
+        created: log.created,
+      });
+    }
+  }
+
+  return JSON.stringify(obj, null, 2);
 };
 
 const localLogKey = "@local-logs";

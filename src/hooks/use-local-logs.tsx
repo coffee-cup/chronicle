@@ -10,14 +10,12 @@ import {
 import { KeyedLogs, LogProtocol } from "../types";
 
 const initialLogs: KeyedLogs = [
-  {
-    ...newLog(
-      "Journal entries are small and explain one thing you did",
-      subDays(new Date(), 1),
-      0,
-    ),
-    order: 1,
-  },
+  newLog(
+    "Journal entries are small and explain one thing you did",
+    subDays(new Date(), 1),
+    1,
+  ),
+  ,
   newLog("Try creating one yourself ʕ•̮͡•ʔ", subDays(new Date(), 1), 0),
 ].reduce(
   (acc, log) => ({

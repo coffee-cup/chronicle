@@ -82,13 +82,13 @@ const theme: Theme = {
       200: "#dfdfdf",
       400: "#cecece",
       500: "#a2a2a2",
-      600: "#999999",
+      600: "#737373",
       700: "#666565",
     },
     error: "red",
     success: "green",
-    datesOutside: "#cecece",
-    datesInside: "#999999",
+    datesOutside: "#b0b0b0",
+    datesInside: "#757575",
 
     modes: {
       dark: {
@@ -255,6 +255,10 @@ const theme: Theme = {
       fontFamily: "body",
       lineHeight: "body",
       fontWeight: "body",
+
+      /* Better Font Rendering */
+      "-webkit-font-smoothing": "antialiased",
+      "-moz-osx-font-smoothing": "grayscale",
     },
     h1: {
       variant: "textStyles.display",

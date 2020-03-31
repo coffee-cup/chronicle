@@ -26,7 +26,7 @@ const LogsPage = () => {
 
   return (
     <Layout>
-      <UnderDevelopment />
+      {process.env.NODE_ENV === "production" && <UnderDevelopment />}
 
       <Box sx={{ pt: 2 }}>
         <Greeting logsType={logsType} />

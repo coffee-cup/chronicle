@@ -35,7 +35,7 @@ export const deserializeLogs: DeserializeFn<KeyedLogs> = (
   return logs;
 };
 
-const groupByKey = (d: Date): string => `${getDayOfYear(d)}-${getYear(d)}`;
+export const groupKey = (d: Date): string => `${getDayOfYear(d)}-${getYear(d)}`;
 
 export const getLogGroups = (
   logs: KeyedLogs,
@@ -43,7 +43,7 @@ export const getLogGroups = (
   keys: string[];
   groups: { [key: string]: ILogGroup };
 } => {
-  const groups = groupBy(logs, l => groupByKey(l.date));
+  const groups = groupBy(logs, l => groupKey(l.date));
   const keys = sortBy(Object.keys(groups), k => groups[k][0].date).reverse();
 
   // sort logs by order
@@ -63,7 +63,7 @@ export const getGroupForDate = (
   logs: KeyedLogs,
 ): ILogGroup | undefined => {
   const { groups } = getLogGroups(logs);
-  return groups[groupByKey(date)];
+  return groups[groupKey(date)];
 };
 
 export const newLog = (

@@ -130,7 +130,7 @@ const theme: Theme = {
   },
 
   lineHeights: {
-    body: 1.5,
+    body: 1.6,
     heading: 1.125,
   },
 

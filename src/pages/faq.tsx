@@ -40,9 +40,9 @@ const Faq = () => {
             <Styled.p>
               For example, the question, "what did you do 3 weeks ago Monday?",
               is not that easy to answer. But if you have the reference points
-              that on the day before you went for a pub quiz with your friends
-              and on the Tuesday you made fresh pasta, it becomes much easier to
-              remember what you did on the Monday.
+              that on the day before you went for a pub quiz and on the Tuesday
+              you made fresh pasta, it becomes much easier to remember what you
+              did on the Monday.
             </Styled.p>
 
             <Styled.p>

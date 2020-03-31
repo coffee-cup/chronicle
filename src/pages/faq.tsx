@@ -32,31 +32,31 @@ const Faq = () => {
             <Styled.p>
               Chronicle started because I noticed that most people (myself
               especially) are terrible at remembering what they did on a
-              specific day in the past. However, with a few high level reference
+              specific day in the past. But, with a few high-level reference
               points, most people start remembering a lot more about the
               specifics.
             </Styled.p>
 
             <Styled.p>
               For example, the question, "what did you do 3 weeks ago Monday?",
-              is not that easy to answer. But if you have the reference points
-              that on the day before you went for a pub quiz and on the Tuesday
-              you made fresh pasta, it becomes much easier to remember what you
-              did on the Monday.
+              is not that easy to answer. But, if you have the reference points
+              that on the day before you went for a pub quiz and on Tuesday you
+              made fresh pasta, it becomes much easier to remember what you did
+              on Monday.
             </Styled.p>
 
             <Styled.p>
               Chronicle was created to store these reference points. Whenever
-              you have time and remember, you can quickly jot down some key
-              things that happened that day or any day in the past.
+              you have time and remember, you can jot down some key things that
+              happened that day or any day in the past.
             </Styled.p>
           </Question>
 
           <Question title="Why are entries limited to 140 characters?">
             <Styled.p>
               We encourage entries to be short and to the point. You shouldn't
-              be writing paragraphs about a specific event, but rather just
-              writing that the event took place.
+              be writing paragraphs about a specific event, but rather writing
+              that the event took place.
             </Styled.p>
           </Question>
 

@@ -22,7 +22,7 @@ const config: DefaultSeoProps = {
     ],
   },
   twitter: {
-    handle: "@jakerunzer",
+    handle: "@chronicle_ink",
     cardType: "summary",
   },
 };

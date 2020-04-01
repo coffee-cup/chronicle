@@ -45,6 +45,7 @@ class MyDocument extends Document {
             href="/apple-touch-icon.png"
           />
           <link rel="manifest" href="/site.webmanifest" />
+          <meta name="theme-color" content="#ffffff" />
         </Head>
 
         <body>

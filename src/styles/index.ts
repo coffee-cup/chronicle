@@ -257,8 +257,8 @@ const theme: Theme = {
       fontWeight: "body",
 
       /* Better Font Rendering */
-      "-webkit-font-smoothing": "antialiased",
-      "-moz-osx-font-smoothing": "grayscale",
+      WebkitFontSmoothing: "antialiased",
+      MozOsxFontSmoothing: "grayscale",
     },
     h1: {
       variant: "textStyles.display",

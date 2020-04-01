@@ -5,16 +5,19 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "test": "jest"
   },
   "dependencies": {
     "@emotion/styled": "^10.0.27",
     "@styled-system/css": "^5.1.5",
     "@theme-ui/presets": "^0.3.0",
+    "babel-jest": "^25.2.4",
     "copy-to-clipboard": "^3.3.1",
     "date-fns": "^2.11.0",
     "firebase": "^7.10.0",
     "immer": "^6.0.2",
+    "jest": "^25.2.4",
     "localforage": "^1.7.3",
     "lodash": "^4.17.15",
     "next": "9.3.3",
@@ -30,6 +33,7 @@
     "uuid": "^7.0.2"
   },
   "devDependencies": {
+    "@types/jest": "^25.1.4",
     "@types/localforage": "^0.0.34",
     "@types/lodash": "^4.14.149",
     "@types/next-seo": "^1.10.0",

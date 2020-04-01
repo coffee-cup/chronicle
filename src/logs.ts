@@ -24,11 +24,12 @@ export const deserializeLogs: DeserializeFn<KeyedLogs> = (
 
   for (const k of Object.keys(items)) {
     logs[k] = {
-      date: new Date(new Date(items[k].date).toDateString()),
+      date: new Date(items[k].date),
       created: new Date(items[k].created),
       order: items[k].order,
       id: items[k].id,
       text: items[k].text,
+      userId: items[k].userId,
     };
   }
 

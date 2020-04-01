@@ -11,6 +11,7 @@ const ThemeSwitcher: React.FC = () => {
 
   return (
     <Button
+      name="theme switcher"
       onClick={() => setColorMode(colorMode === "default" ? "dark" : "default")}
       sx={{
         display: "flex",

@@ -68,6 +68,7 @@ const Calendar: React.FC<Props> = props => {
       />
 
       <Button
+        name="today"
         variant="subtle"
         sx={{ mt: 2, display: ["none", "inline-block"] }}
         onClick={setToday}

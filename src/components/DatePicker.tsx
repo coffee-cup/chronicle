@@ -67,6 +67,7 @@ const DatePicker: React.FC<Props> = props => {
       >
         {({ inputProps, focused }) => (
           <Input
+            aria-label="Date picker for journal entry"
             sx={{ p: 0, border: 0, maxWidth: "140px", cursor: "pointer" }}
             className={"input" + (focused ? " -focused" : "")}
             {...inputProps}

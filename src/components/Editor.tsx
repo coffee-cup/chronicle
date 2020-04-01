@@ -67,6 +67,11 @@ const Editor: React.FC = props => {
     }
   };
 
+  const textareaLabel = `What did you do on ${format(
+    selectedDate,
+    "iiii, MMMM do",
+  )}?`;
+
   return (
     <Box
       as="form"
@@ -77,11 +82,9 @@ const Editor: React.FC = props => {
       <Box sx={{ mb: 2, flexGrow: 1 }}>
         <Textarea
           sx={{ minHeight: "90px" }}
+          aria-label={textareaLabel}
           value={text}
-          placeholder={`What did you do on ${format(
-            selectedDate,
-            "iiii, MMMM do",
-          )}?`}
+          placeholder={textareaLabel}
           onChange={e => changeText(e.target.value)}
           onKeyPress={e => {
             if (e.charCode === 13 && !e.shiftKey) {
@@ -112,7 +115,7 @@ const Editor: React.FC = props => {
           <Text sx={{ pr: 3, fontSize: [1, 2] }}>
             {text.length} / {textLimit}
           </Text>
-          <Button>Submit</Button>
+          <Button name="submit journal entry">Submit</Button>
         </Box>
       </Box>
 

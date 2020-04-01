@@ -1,9 +1,10 @@
 import { DefaultSeoProps } from "next-seo";
 
 const title = "Chronicle";
-const url = "";
-const description = "";
-const image = "";
+const url = "https://chronicle.ink";
+const description =
+  "Lightweight journaling app where you record highlights of your day";
+const image = "https://chronicle.ink/og.png";
 
 const config: DefaultSeoProps = {
   title,
@@ -15,15 +16,15 @@ const config: DefaultSeoProps = {
     images: [
       {
         url: image,
-        width: 1024,
-        height: 1024
-      }
-    ]
+        width: 512,
+        height: 512,
+      },
+    ],
   },
   twitter: {
     handle: "@jakerunzer",
-    cardType: "summary"
-  }
+    cardType: "summary",
+  },
 };
 
 export default config;

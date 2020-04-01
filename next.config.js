@@ -1,7 +1,7 @@
-const withImages = require("next-images");
+const withPWA = require("next-pwa");
 
-module.exports = withImages({
-  webpack(config, options) {
-    return config;
+module.exports = withPWA({
+  pwa: {
+    dest: "public",
   },
 });

@@ -1,4 +1,5 @@
-import firebase from "firebase";
+import * as firebase from "firebase/app";
+import "firebase/auth";
 import * as React from "react";
 
 export type UserResult =

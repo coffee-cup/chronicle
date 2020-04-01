@@ -63,7 +63,7 @@ describe("logs", () => {
 
   describe("groups", () => {
     it("gets group key", () => {
-      expect(groupKey(new Date("2020-04-01T16:59:48.421Z"))).toBe("92-2020");
+      expect(groupKey(new Date("2020-04-01T16:59:48.421Z"))).toBe("1-3-2020");
     });
   });
 });

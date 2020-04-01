@@ -51,8 +51,6 @@ const LogList: React.FC = props => {
   const { logs, loading } = useLogs();
   const { keys, groups } = getLogGroups(logs);
 
-  const todayGroup = groups[groupKey(new Date())];
-
   if (loading) {
     return null;
   }

@@ -36,7 +36,8 @@ export const deserializeLogs: DeserializeFn<KeyedLogs> = (
   return logs;
 };
 
-export const groupKey = (d: Date): string => `${getDayOfYear(d)}-${getYear(d)}`;
+export const groupKey = (d: Date): string =>
+  `${d.getDate()}-${d.getMonth()}-${d.getFullYear()}`;
 
 export const getLogGroups = (
   logs: KeyedLogs,

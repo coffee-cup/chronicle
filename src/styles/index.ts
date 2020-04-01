@@ -235,6 +235,11 @@ const theme: Theme = {
       maxHeight: "200px",
       fontSize: 2,
       fontFamily: "body",
+
+      "&:focus": {
+        outline: "none",
+        borderColor: "accent",
+      },
     },
   },
 

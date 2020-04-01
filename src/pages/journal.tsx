@@ -11,7 +11,7 @@ const LogsPage = () => {
 
   return (
     <Layout>
-      <Box sx={{ pt: 2 }}>
+      <Box>
         <Greeting logsType={logsType} />
 
         {logsType !== "loading" && (

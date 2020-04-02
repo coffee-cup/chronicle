@@ -96,7 +96,7 @@ const Options: React.FC = () => {
             </Text>
 
             <Flex sx={{ pt: 3 }}>
-              <Link href="/login" variant="button">
+              <Link href="/login" variant="button" sx={{ mr: 2 }}>
                 Login
               </Link>
 
@@ -115,7 +115,9 @@ const Options: React.FC = () => {
         <Text>Select one of the following formats</Text>
 
         <Flex sx={{ pt: 3 }}>
-          <Button onClick={() => doExport("md")}>Markdown</Button>
+          <Button sx={{ mr: 2 }} onClick={() => doExport("md")}>
+            Markdown
+          </Button>
           <Button onClick={() => doExport("json")}>JSON</Button>
         </Flex>
 

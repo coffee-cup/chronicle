@@ -11,7 +11,7 @@ const ThemeSwitcher: React.FC = () => {
 
   return (
     <Button
-      name="theme switcher"
+      aria-label="theme switcher"
       onClick={() => setColorMode(colorMode === "default" ? "dark" : "default")}
       sx={{
         display: "flex",
@@ -22,9 +22,9 @@ const ThemeSwitcher: React.FC = () => {
         px: 2,
         py: 1,
 
-        "&:hover": {
+        "&:hover,&:focus,&:active": {
           color: "text",
-          bg: "transparent",
+          bg: "accent",
           boxShadow: "none",
         },
       }}

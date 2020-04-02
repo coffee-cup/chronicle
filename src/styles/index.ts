@@ -58,7 +58,7 @@ const baseButton = {
   borderColor: "currentColor",
   transition: "all 150ms ease-in-out",
 
-  "&:hover": {
+  "&:hover,&:focus,&:active": {
     color: "primary",
     bg: "secondary",
     boxShadow: "4px 4px 0px 0px var(--theme-ui-colors-text, black)",
@@ -156,7 +156,7 @@ const theme: Theme = {
       bg: "muted",
       border: "none",
 
-      "&:hover": {
+      "&:hover,&:focus,&:active": {
         boxShadow: "none",
         bg: "accent",
       },
@@ -176,18 +176,8 @@ const theme: Theme = {
       px: 3,
       py: 2,
 
-      "&:hover": {
-        ...baseLink["&:hover"],
+      "&:hover,&:focus,&:active": {
         color: "text",
-        bg: "accent",
-      },
-    },
-    mdxItem: {
-      ...baseLink,
-      textDecoration: "none",
-
-      "&:hover": {
-        ...baseLink["&:hover"],
         bg: "accent",
       },
     },
@@ -197,10 +187,6 @@ const theme: Theme = {
       py: 1,
       fontSize: 2,
       textDecoration: "none",
-
-      "&:hover": {
-        ...baseLink["&:hover"],
-      },
     },
     footer: {
       ...baseLink,
@@ -213,10 +199,6 @@ const theme: Theme = {
     empty: {
       ...baseLink,
       textDecoration: "none",
-
-      "&:hover": {
-        ...baseLink["&:hover"],
-      },
     },
   },
 

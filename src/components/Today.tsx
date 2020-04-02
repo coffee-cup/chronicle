@@ -27,7 +27,11 @@ const Today: React.FC<{ empty: boolean }> = props => {
         <Text>Jot down a highlight of the day</Text>
       </Box>
 
-      <ArrowRight size={22} sx={{ display: ["none", "inline"] }} />
+      <ArrowRight
+        size={22}
+        sx={{ display: ["none", "inline"] }}
+        aria-hidden="true"
+      />
     </Box>
   );
 };

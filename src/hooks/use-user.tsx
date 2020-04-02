@@ -50,12 +50,14 @@ export const UserProvider: React.FC = props => {
       user,
     });
 
-    Sentry.configureScope(scope => {
-      scope.setUser({
-        id: user.uid,
-        email: user.email,
+    if (user != null) {
+      Sentry.configureScope(scope => {
+        scope.setUser({
+          id: user.uid,
+          email: user.email,
+        });
       });
-    });
+    }
   };
 
   const onError = (error: firebase.auth.Error) => {

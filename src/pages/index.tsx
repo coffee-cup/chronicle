@@ -57,7 +57,7 @@ const Features: React.FC = () => (
       </Feature>
       <Feature title="Privacy first">
         No tracking, ads, or pushy recommendations. Delete your account data at
-        any time
+        any time.
       </Feature>
       <Feature title="Dark mode">
         Use while lying in bed without waking your date.

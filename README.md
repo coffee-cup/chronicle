@@ -2,6 +2,8 @@
 
 ![CI](https://github.com/coffee-cup/chronicle/workflows/CI/badge.svg)
 
+Lightweight journaling app where you record highlights of your day. Available at [chronicle.ink](https://chronicle.ink).
+
 <img width="1022" alt="image" src="https://user-images.githubusercontent.com/3044853/78279047-dd3d5e80-750e-11ea-93b9-58f0dda1abc9.png">
 
 

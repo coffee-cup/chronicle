@@ -63,7 +63,7 @@ const Features: React.FC = () => (
         Use while lying in bed without waking your date.
       </Feature>
       <Feature title="Export">
-        Export your journal to markdown or json format
+        Export your journal to markdown or json format.
       </Feature>
     </Grid>
   </Section>

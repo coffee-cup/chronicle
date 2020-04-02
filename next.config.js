@@ -5,13 +5,15 @@ const webpack = require("webpack");
 
 console.log("SENTRY DSN", process.env.SENTRY_DSN);
 
+const isProd = process.env.NODE_ENV === "production";
+
 module.exports = withPlugins([withPWA, nextSourceMaps], {
   pwa: {
-    disable: process.env.NODE_ENV !== "production",
+    disable: !isProd,
     dest: "public",
   },
   env: {
-    SENTRY_DSN: process.env.SENTRY_DSN,
+    SENTRY_DSN: isProd ? process.env.SENTRY_DSN : "",
   },
   webpack: (config, options) => {
     if (!options.isServer) {

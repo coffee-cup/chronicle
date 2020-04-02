@@ -2,8 +2,7 @@
 
 ![CI](https://github.com/coffee-cup/chronicle/workflows/CI/badge.svg)
 
-
-<img width="1053" alt="image" src="https://user-images.githubusercontent.com/3044853/78278847-90f21e80-750e-11ea-80bf-36ca903c18a3.png">
+<img width="1022" alt="image" src="https://user-images.githubusercontent.com/3044853/78279047-dd3d5e80-750e-11ea-93b9-58f0dda1abc9.png">
 
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/zeit/next.js/tree/canary/packages/create-next-app).

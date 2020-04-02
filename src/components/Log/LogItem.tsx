@@ -46,6 +46,7 @@ const LogItem: React.FC<Props> = props => (
       onClick={() => {
         props.deleteLog(props.log.id);
       }}
+      aria-label="delete"
     >
       <X size={16} />
     </IconButton>

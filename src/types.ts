@@ -7,14 +7,15 @@ export interface ILog {
   userId?: string;
 }
 
-export type KeyedLogs = { [id: string]: ILog };
+export type IKeyedLogs = { [id: string]: ILog };
 
 export type ILogGroup = ILog[];
+export type ILogGroups = { [key: string]: ILogGroup };
 
 export interface LogProtocol {
   loading: boolean;
   error: string | null;
-  logs: KeyedLogs;
+  logs: IKeyedLogs;
   selectedDate: Date;
   setSelectedDate: (date: Date) => void;
   createLog: (text: string, date: Date, order?: number) => void;

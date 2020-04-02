@@ -3,7 +3,7 @@ import { format } from "date-fns";
 import * as React from "react";
 import { Box, Button, jsx, Text, Textarea } from "theme-ui";
 
-import { KeyedLogs, LogProtocol } from "../types";
+import { IKeyedLogs, LogProtocol } from "../types";
 import { getClosestDate } from "../utils";
 import { scrollTo } from "../utils/scrollTo";
 import Calendar from "./Calendar";
@@ -12,7 +12,7 @@ import { useLogs } from "../hooks/use-logs";
 
 const textLimit = 140;
 
-const scrollToClosestDate = (logs: KeyedLogs, date: Date): Date | null => {
+const scrollToClosestDate = (logs: IKeyedLogs, date: Date): Date | null => {
   const closestDate = getClosestDate(
     Object.values(logs).map(l => l.date),
     date,

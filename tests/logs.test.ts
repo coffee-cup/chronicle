@@ -1,4 +1,4 @@
-import { KeyedLogs, ILog } from "../src/types";
+import { IKeyedLogs, ILog } from "../src/types";
 import { newLog, serializeLogs, deserializeLogs, groupKey } from "../src/logs";
 
 let id = 0;
@@ -8,7 +8,7 @@ const createLog = (text: string, date: Date, order?: number): ILog => ({
   id: `${id++}`,
 });
 
-const createDummyLogs = (logs: ILog[]): KeyedLogs =>
+const createDummyLogs = (logs: ILog[]): IKeyedLogs =>
   logs.reduce(
     (acc, log) => ({
       ...acc,

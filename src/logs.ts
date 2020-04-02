@@ -6,21 +6,22 @@ import {
   DeserializeFn,
   ILog,
   ILogGroup,
-  KeyedLogs,
+  IKeyedLogs,
   SerializeFn,
+  ILogGroups,
 } from "./types";
 
-export const serializeLogs: SerializeFn<KeyedLogs> = (
-  logs: KeyedLogs,
+export const serializeLogs: SerializeFn<IKeyedLogs> = (
+  logs: IKeyedLogs,
 ): string => {
   return JSON.stringify(logs);
 };
 
-export const deserializeLogs: DeserializeFn<KeyedLogs> = (
+export const deserializeLogs: DeserializeFn<IKeyedLogs> = (
   logString: string,
-): KeyedLogs => {
+): IKeyedLogs => {
   const items = JSON.parse(logString);
-  const logs: KeyedLogs = {};
+  const logs: IKeyedLogs = {};
 
   for (const k of Object.keys(items)) {
     logs[k] = {
@@ -40,10 +41,10 @@ export const groupKey = (d: Date): string =>
   `${d.getDate()}-${d.getMonth()}-${d.getFullYear()}`;
 
 export const getLogGroups = (
-  logs: KeyedLogs,
+  logs: IKeyedLogs,
 ): {
   keys: string[];
-  groups: { [key: string]: ILogGroup };
+  groups: ILogGroups;
 } => {
   const groups = groupBy(logs, l => groupKey(l.date));
   const keys = sortBy(Object.keys(groups), k => groups[k][0].date).reverse();
@@ -62,7 +63,7 @@ export const getLogGroups = (
 
 export const getGroupForDate = (
   date: Date,
-  logs: KeyedLogs,
+  logs: IKeyedLogs,
 ): ILogGroup | undefined => {
   const { groups } = getLogGroups(logs);
   return groups[groupKey(date)];
@@ -86,7 +87,7 @@ export const newLog = (
   return log;
 };
 
-export const exportToMarkdown = (logs: KeyedLogs): string => {
+export const exportToMarkdown = (logs: IKeyedLogs): string => {
   const { keys, groups } = getLogGroups(logs);
 
   const dateFormat = "MMMM do, yyyy";
@@ -108,7 +109,7 @@ Exported from [chronicle.ink](https://chronicle.ink) on ${format(
   return s;
 };
 
-export const exportToJson = (logs: KeyedLogs): string => {
+export const exportToJson = (logs: IKeyedLogs): string => {
   const { keys, groups } = getLogGroups(logs);
 
   const dateFormat = "yyyy-MM-dd";
@@ -133,10 +134,10 @@ export const exportToJson = (logs: KeyedLogs): string => {
 const localLogKey = "@local-logs";
 
 export const getLocalLogs = async (
-  defaultValue: KeyedLogs,
-): Promise<KeyedLogs> => getItem(localLogKey, defaultValue, deserializeLogs);
+  defaultValue: IKeyedLogs,
+): Promise<IKeyedLogs> => getItem(localLogKey, defaultValue, deserializeLogs);
 
-export const saveLocalLogs = (logs: KeyedLogs) =>
+export const saveLocalLogs = (logs: IKeyedLogs) =>
   saveItem(localLogKey, logs, serializeLogs);
 
 export const clearLocalLogs = () => clearItem(localLogKey);

@@ -7,9 +7,9 @@ import {
   saveLocalLogs,
   clearLocalLogs,
 } from "../logs";
-import { KeyedLogs, LogProtocol } from "../types";
+import { IKeyedLogs, LogProtocol } from "../types";
 
-const initialLogs: KeyedLogs = [
+const initialLogs: IKeyedLogs = [
   newLog(
     "Journal entries are small and explain one thing you did",
     subDays(new Date(), 1),
@@ -26,7 +26,7 @@ const initialLogs: KeyedLogs = [
 );
 
 const useLocalLogs = (): LogProtocol => {
-  const [logs, setLogs] = React.useState<KeyedLogs>({});
+  const [logs, setLogs] = React.useState<IKeyedLogs>({});
   const [selectedDate, setSelectedDate] = React.useState<Date>(
     new Date(new Date().toDateString()),
   );

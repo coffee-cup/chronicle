@@ -3,7 +3,7 @@ import "firebase/firestore";
 import * as React from "react";
 import { useImmer } from "use-immer";
 import { newLog, getGroupForDate, getLocalLogs, clearLocalLogs } from "../logs";
-import { ILog, KeyedLogs, LogProtocol } from "../types";
+import { ILog, IKeyedLogs, LogProtocol } from "../types";
 import useUser from "./use-user";
 
 const logsCollection = "logs";
@@ -22,7 +22,7 @@ const firestoreLogToLog = (data: IFirestoreLog): ILog => ({
 });
 
 const createFirebaseLog = (
-  logs: KeyedLogs,
+  logs: IKeyedLogs,
   text: string,
   date: Date,
   user: firebase.User,
@@ -50,7 +50,7 @@ const saveLocalLogs = async (user: firebase.User) => {
     .where("userId", "==", user.uid)
     .get();
 
-  const logs: KeyedLogs = {};
+  const logs: IKeyedLogs = {};
   for (const doc of data.docs) {
     logs[doc.id] = firestoreLogToLog(doc.data() as IFirestoreLog);
   }
@@ -67,7 +67,7 @@ const useFirebaseLogs = (): LogProtocol => {
   const { user, loading: userLoading } = useUser();
   const [loading, setLoading] = React.useState(true);
   const [error, setError] = React.useState<string | null>(null);
-  const [logs, updateLogs] = useImmer<KeyedLogs>({});
+  const [logs, updateLogs] = useImmer<IKeyedLogs>({});
   const [selectedDate, setSelectedDate] = React.useState<Date>(
     new Date(new Date().toDateString()),
   );

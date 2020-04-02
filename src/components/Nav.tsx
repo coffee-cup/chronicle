@@ -47,8 +47,8 @@ const Nav: React.FC = () => {
         faq
       </NavLink>
 
-      <NavLink as={Link} href={user == null ? "/login" : "/logout"}>
-        {loading ? <Spinner size={22} /> : user == null ? "login" : "logout"}
+      <NavLink as={Link} href={user == null ? "/login" : "/profile"}>
+        {loading ? <Spinner size={22} /> : user == null ? "login" : "profile"}
       </NavLink>
 
       <ThemeSwitcher />

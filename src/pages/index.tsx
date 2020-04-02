@@ -38,9 +38,9 @@ const Features: React.FC = () => (
   <Section>
     <Styled.h2 sx={{ mb: 0 }}>Features</Styled.h2>
 
-    <Text sx={{ maxWidth: "measure", fontSize: 3, py: 3 }}>
-      Chronicle journals are designed to be short and to the point. <br />
-      No fluff or hooey. Think, point-form lists of your day.
+    <Text sx={{ maxWidth: "31rem", fontSize: 3, py: 3 }}>
+      Chronicle journals are designed to be short and to the point. No fluff or
+      hooey. Think, point-form lists of your day.
     </Text>
 
     <Grid gap={3} columns={[null, 2]}>
@@ -57,7 +57,7 @@ const Features: React.FC = () => (
       </Feature>
       <Feature title="Privacy first">
         No tracking, ads, or pushy recommendations. Delete your account data at
-        any time
+        any time.
       </Feature>
       <Feature title="Dark mode">
         Use while lying in bed without waking your date.

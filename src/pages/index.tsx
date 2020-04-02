@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { Clock } from "react-feather";
-import { Box, Flex, Grid, Text, jsx, Styled } from "theme-ui";
+import { Box, Flex, Grid, Text, jsx, Styled, Button } from "theme-ui";
 import Layout from "../components/Layout";
 import Link from "../components/Link";
 
@@ -63,7 +63,7 @@ const Features: React.FC = () => (
         Use while lying in bed without waking your date.
       </Feature>
       <Feature title="Export">
-        Export your journal to markdown or json format.
+        Export your journal to markdown or json format
       </Feature>
     </Grid>
   </Section>

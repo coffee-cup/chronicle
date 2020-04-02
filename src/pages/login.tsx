@@ -52,7 +52,7 @@ const Login = () => {
             <Box>
               {error && <Box sx={{ color: "red", pb: 2 }}>{error}</Box>}
 
-              <Label htmlFor="username">username</Label>
+              <Label htmlFor="email">email</Label>
               {errors.email && errors.email.type === "pattern" && (
                 <span sx={{ color: "error", fontSize: 1 }}>invalid email</span>
               )}

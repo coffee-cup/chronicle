@@ -1,6 +1,7 @@
 import * as firebase from "firebase/app";
 import "firebase/auth";
 import * as React from "react";
+import * as Sentry from "@sentry/node";
 
 export type UserResult =
   | {
@@ -47,6 +48,13 @@ export const UserProvider: React.FC = props => {
       loading: false,
       error: null,
       user,
+    });
+
+    Sentry.configureScope(scope => {
+      scope.setUser({
+        id: user.uid,
+        email: user.email,
+      });
     });
   };
 

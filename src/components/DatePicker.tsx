@@ -11,7 +11,7 @@ export interface Props {
   highlighted?: Date[];
 }
 
-const DatePicker: React.FC<Props> = props => {
+const DatePicker: React.FC<Props> = React.memo(props => {
   const [date, setDate] = React.useState(props.initialValue);
 
   const onDateChanged = (date: Date) => {
@@ -76,6 +76,6 @@ const DatePicker: React.FC<Props> = props => {
       </NiceDatePicker>
     </Box>
   );
-};
+});
 
 export default DatePicker;

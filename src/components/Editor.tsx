@@ -1,14 +1,14 @@
 /** @jsx jsx */
 import { format } from "date-fns";
 import * as React from "react";
-import { Box, Button, jsx, Text, Textarea } from "theme-ui";
-
+import { Box, Button, jsx, Text, Textarea, useThemeUI } from "theme-ui";
 import { IKeyedLogs, LogProtocol } from "../types";
 import { getClosestDate } from "../utils";
 import { scrollTo } from "../utils/scrollTo";
 import Calendar from "./Calendar";
 import DatePicker from "./DatePicker";
 import { useLogs } from "../hooks/use-logs";
+import useMediaQuery from "../hooks/useMediaQuery";
 
 const textLimit = 140;
 
@@ -30,9 +30,13 @@ const scrollToClosestDate = (logs: IKeyedLogs, date: Date): Date | null => {
 
 const Editor: React.FC = props => {
   const { selectedDate, logs, setSelectedDate, createLog } = useLogs();
-
   const [text, setText] = React.useState("");
   const [scrolledDate, setScrolledDate] = React.useState<Date | null>(null);
+
+  const { theme } = useThemeUI();
+  const isSmall = useMediaQuery(
+    `(max-width: ${theme.breakpoints[0].toString()})`,
+  );
 
   React.useEffect(() => {
     if (
@@ -67,10 +71,24 @@ const Editor: React.FC = props => {
     }
   };
 
-  const textareaLabel = `What did you do on ${format(
-    selectedDate,
-    "iiii, MMMM do",
-  )}?`;
+  const textareaLabel = React.useMemo(
+    () => `What did you do on ${format(selectedDate, "iiii, MMMM do")}?`,
+    [selectedDate],
+  );
+
+  const highlightedDates = React.useMemo(
+    () => Object.values(logs).map(l => new Date(l.date)),
+    [logs],
+  );
+
+  const changeDateScroll = React.useCallback(
+    (date: Date) => changeDate(date, true),
+    [],
+  );
+  const changeDateNoScroll = React.useCallback(
+    (date: Date) => changeDate(date, false),
+    [],
+  );
 
   return (
     <Box
@@ -104,11 +122,13 @@ const Editor: React.FC = props => {
         }}
       >
         <Box sx={{ display: ["block", "none"] }}>
-          <DatePicker
-            initialValue={selectedDate}
-            onDateChanged={date => changeDate(date, false)}
-            highlighted={Object.values(logs).map(l => new Date(l.date))}
-          />
+          {isSmall && (
+            <DatePicker
+              initialValue={selectedDate}
+              onDateChanged={changeDateNoScroll}
+              highlighted={highlightedDates}
+            />
+          )}
         </Box>
 
         <Box sx={{ display: "flex", alignItems: "center" }}>
@@ -120,11 +140,13 @@ const Editor: React.FC = props => {
       </Box>
 
       <Box sx={{ pt: 2, display: ["none", "block"] }}>
-        <Calendar
-          initialValue={selectedDate}
-          onDateChanged={date => changeDate(date, true)}
-          highlighted={Object.values(logs).map(l => new Date(l.date))}
-        />
+        {!isSmall && (
+          <Calendar
+            initialValue={selectedDate}
+            onDateChanged={changeDateScroll}
+            highlighted={highlightedDates}
+          />
+        )}
       </Box>
     </Box>
   );

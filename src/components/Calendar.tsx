@@ -11,7 +11,7 @@ export interface Props {
   highlighted?: Date[];
 }
 
-const Calendar: React.FC<Props> = props => {
+const Calendar: React.FC<Props> = React.memo(props => {
   const [date, setDate] = React.useState(props.initialValue);
 
   const onDateChanged = (date: Date) => {
@@ -77,6 +77,6 @@ const Calendar: React.FC<Props> = props => {
       </Button>
     </Box>
   );
-};
+});
 
 export default Calendar;

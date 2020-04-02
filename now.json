@@ -1,7 +1,7 @@
 {
   "build": {
     "env": {
-      "SENTRY_DSN": "@secret-sentry_dsn_chronicle"
+      "SENTRY_DSN": "@sentry_dsn_chronicle"
     }
   }
 }

@@ -9,8 +9,6 @@ Sentry.init({
   dsn: process.env.SENTRY_DSN,
 });
 
-console.log("SENTRY", process.env.SENTRY_DSN);
-
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <ThemeProvider theme={theme}>

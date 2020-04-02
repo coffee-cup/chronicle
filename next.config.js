@@ -3,8 +3,6 @@ const nextSourceMaps = require("@zeit/next-source-maps")();
 const withPlugins = require("next-compose-plugins");
 const webpack = require("webpack");
 
-console.log("SENTRY DSN", process.env.SENTRY_DSN);
-
 const isProd = process.env.NODE_ENV === "production";
 
 module.exports = withPlugins([withPWA, nextSourceMaps], {

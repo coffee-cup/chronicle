@@ -93,7 +93,7 @@ const Faq = () => {
             <Styled.p>
               Mainly, because it was available. Good domains are hard to come
               by. If you think hard about it though, ink is used to write stuff
-              down permanatley, and that is <em>(sort of)</em> what Chronicle is
+              down permanently, and that is <em>(sort of)</em> what Chronicle is
               about.
             </Styled.p>
           </Question>

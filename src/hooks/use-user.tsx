@@ -2,6 +2,7 @@ import * as firebase from "firebase/app";
 import "firebase/auth";
 import * as React from "react";
 import * as Sentry from "@sentry/node";
+import { useRouter } from "next/router";
 
 export type UserResult =
   | {
@@ -30,13 +31,15 @@ type UserState = UserResult & {
     email: string,
     password: string,
   ) => Promise<firebase.auth.UserCredential>;
+  loginWithTwitter: () => void;
 };
 
 const UserContext = React.createContext<UserState>({} as UserState);
 
 export const useUser = (): UserState => React.useContext(UserContext);
 
-export const UserProvider: React.FC = props => {
+export const UserProvider: React.FC = (props) => {
+  const router = useRouter();
   const [userResult, setUserResult] = React.useState<UserResult>({
     loading: true,
     error: null,
@@ -51,7 +54,7 @@ export const UserProvider: React.FC = props => {
     });
 
     if (user != null) {
-      Sentry.configureScope(scope => {
+      Sentry.configureScope((scope) => {
         scope.setUser({
           id: user.uid,
           email: user.email,
@@ -73,8 +76,25 @@ export const UserProvider: React.FC = props => {
     return () => unsubscribe();
   }, []);
 
+  React.useEffect(() => {
+    (async () => {
+      const result = await firebase.auth().getRedirectResult();
+      if (
+        result.user != null &&
+        result.additionalUserInfo.providerId === "twitter.com"
+      ) {
+        router.push("/journal");
+      }
+    })();
+  });
+
   const login = (email: string, password: string) =>
     firebase.auth().signInWithEmailAndPassword(email, password);
+
+  const loginWithTwitter = async () => {
+    const provider = new firebase.auth.TwitterAuthProvider();
+    await firebase.auth().signInWithRedirect(provider);
+  };
 
   const logout = () => firebase.auth().signOut();
 
@@ -84,6 +104,7 @@ export const UserProvider: React.FC = props => {
   const value: UserState = {
     ...userResult,
     login,
+    loginWithTwitter,
     logout,
     createAccount,
   };

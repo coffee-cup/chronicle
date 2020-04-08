@@ -7,6 +7,7 @@ import Layout from "../components/Layout";
 import Link from "../components/Link";
 import useUser from "../hooks/use-user";
 import { emailRegex } from "../utils";
+import LoginWithTwitter from "../components/LoginWithTwittter";
 
 interface FormData {
   email: string;
@@ -87,7 +88,10 @@ const Signup = () => {
               Already have an account? <Link to="/login">Login</Link>.
             </p>
 
-            <Button>Create</Button>
+            <Flex sx={{ alignItems: "center", flexWrap: "wrap" }}>
+              <Button sx={{ mr: 2 }}>Create</Button> or{" "}
+              <LoginWithTwitter sx={{ ml: 2 }} />
+            </Flex>
           </Box>
         </Box>
       </Flex>

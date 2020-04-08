@@ -7,6 +7,7 @@ import Layout from "../components/Layout";
 import Link from "../components/Link";
 import useUser from "../hooks/use-user";
 import { emailRegex } from "../utils";
+import LoginWithTwitter from "../components/LoginWithTwittter";
 
 interface FormData {
   email: string;
@@ -79,12 +80,14 @@ const Login = () => {
                 ref={register({ required: true, minLength: 8 })}
               />
             </Box>
-
             <p>
               New to Chronicle? <Link to="/signup">Create an account</Link>.
             </p>
 
-            <Button>Create</Button>
+            <Flex sx={{ alignItems: "center", flexWrap: "wrap" }}>
+              <Button sx={{ mr: 2 }}>Login with email</Button> or{" "}
+              <LoginWithTwitter sx={{ ml: [0, 2] }} />
+            </Flex>
           </Box>
         </Box>
       </Flex>

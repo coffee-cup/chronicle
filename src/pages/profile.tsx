@@ -17,7 +17,7 @@ import useUser from "../hooks/use-user";
 import { exportToMarkdown, exportToJson } from "../logs";
 import useCopy from "../hooks/use-copy";
 
-const Section: React.FC = props => <Box {...props} sx={{ pb: 4 }} />;
+const Section: React.FC = (props) => <Box {...props} sx={{ pb: 4 }} />;
 
 const Options: React.FC = () => {
   const { user, logout } = useUser();
@@ -26,6 +26,11 @@ const Options: React.FC = () => {
   const [exportText, setExportText] = React.useState("");
   const [message, setMessage] = React.useState("");
   const [showCopied, copyText] = useCopy();
+
+  const twitterSignIn =
+    user != null &&
+    user.providerData.length > 0 &&
+    user.providerData[0].providerId === "twitter.com";
 
   React.useEffect(() => {
     if (message !== "") {
@@ -72,10 +77,16 @@ const Options: React.FC = () => {
       <Section>
         {user != null ? (
           <Box>
-            <Text>You are logged in as</Text>
-            <Text variant="heading" sx={{ my: 2, fontSize: 4 }}>
-              {user.email}
-            </Text>
+            {twitterSignIn ? (
+              <Text>You are logged in through Twitter</Text>
+            ) : (
+              <Box>
+                <Text>You are logged in as</Text>
+                <Text variant="heading" sx={{ my: 2, fontSize: 4 }}>
+                  {user.email}
+                </Text>
+              </Box>
+            )}
 
             <Box sx={{ pt: 2 }}>
               <Button

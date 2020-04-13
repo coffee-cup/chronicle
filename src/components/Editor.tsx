@@ -2,13 +2,13 @@
 import { format } from "date-fns";
 import * as React from "react";
 import { Box, Button, jsx, Text, Textarea, useThemeUI } from "theme-ui";
-import { IKeyedLogs, LogProtocol } from "../types";
+import { useLogs } from "../hooks/use-logs";
+import useMediaQuery from "../hooks/useMediaQuery";
+import { IKeyedLogs } from "../types";
 import { getClosestDate } from "../utils";
 import { scrollTo } from "../utils/scrollTo";
 import Calendar from "./Calendar";
 import DatePicker from "./DatePicker";
-import { useLogs } from "../hooks/use-logs";
-import useMediaQuery from "../hooks/useMediaQuery";
 
 const textLimit = 140;
 
@@ -83,11 +83,11 @@ const Editor: React.FC = props => {
 
   const changeDateScroll = React.useCallback(
     (date: Date) => changeDate(date, true),
-    [],
+    [logs],
   );
   const changeDateNoScroll = React.useCallback(
     (date: Date) => changeDate(date, false),
-    [],
+    [logs],
   );
 
   return (

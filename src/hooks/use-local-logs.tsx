@@ -16,7 +16,7 @@ const initialLogs: IKeyedLogs = [
     1,
   ),
   ,
-  newLog("Try creating one yourself  •‿•", subDays(new Date(), 1), 0),
+  newLog("Try creating one yourself", subDays(new Date(), 1), 0),
 ].reduce(
   (acc, log) => ({
     ...acc,

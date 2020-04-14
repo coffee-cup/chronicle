@@ -2,7 +2,13 @@ import firebase from "firebase/app";
 import "firebase/firestore";
 import * as React from "react";
 import { useImmer } from "use-immer";
-import { newLog, getGroupForDate, getLocalLogs, clearLocalLogs } from "../logs";
+import {
+  newLog,
+  getGroupForDate,
+  getLocalLogs,
+  clearLocalLogs,
+  getLogGroups,
+} from "../logs";
 import { ILog, IKeyedLogs, LogProtocol } from "../types";
 import useUser from "./use-user";
 
@@ -31,10 +37,7 @@ const createFirebaseLog = (
   const order = logGroup == null ? 0 : logGroup.length;
   const log = newLog(text, date, order, user.uid);
 
-  firestore
-    .collection(logsCollection)
-    .doc(log.id)
-    .set(log);
+  firestore.collection(logsCollection).doc(log.id).set(log);
 
   return log;
 };
@@ -55,9 +58,14 @@ const saveLocalLogs = async (user: firebase.User) => {
     logs[doc.id] = firestoreLogToLog(doc.data() as IFirestoreLog);
   }
 
-  for (const [id, log] of Object.entries(localLogs)) {
-    const newLog = createFirebaseLog(logs, log.text, log.date, user);
-    logs[newLog.id] = newLog;
+  const { groups, keys } = getLogGroups(localLogs);
+  for (const key of keys) {
+    const group = groups[key];
+
+    for (const log of group.reverse()) {
+      const newLog = createFirebaseLog(logs, log.text, log.date, user);
+      logs[newLog.id] = newLog;
+    }
   }
 
   clearLocalLogs();
@@ -82,10 +90,7 @@ const useFirebaseLogs = (): LogProtocol => {
   };
 
   const deleteLog = (id: string) => {
-    firestore
-      .collection(logsCollection)
-      .doc(id)
-      .delete();
+    firestore.collection(logsCollection).doc(id).delete();
   };
 
   React.useEffect(() => {

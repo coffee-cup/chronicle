@@ -3,7 +3,7 @@ import "firebase/auth";
 import * as React from "react";
 import * as Sentry from "@sentry/node";
 import { useRouter } from "next/router";
-import { saveItem, getItem } from "../local";
+import { saveItem, getItem, clearItem } from "../local";
 
 export type UserResult =
   | {
@@ -84,6 +84,7 @@ export const UserProvider: React.FC = props => {
   React.useEffect(() => {
     (async () => {
       const result = await getItem(twitterKey, false);
+      clearItem(twitterKey);
       if (result) {
         setCameFromTwitter(true);
       }

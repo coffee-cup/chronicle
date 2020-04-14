@@ -3,6 +3,7 @@ import "firebase/auth";
 import * as React from "react";
 import * as Sentry from "@sentry/node";
 import { useRouter } from "next/router";
+import { saveItem, getItem, clearItem } from "../local";
 
 export type UserResult =
   | {
@@ -22,6 +23,7 @@ export type UserResult =
     };
 
 type UserState = UserResult & {
+  cameFromTwitter: boolean;
   login: (
     email: string,
     password: string,
@@ -38,13 +40,16 @@ const UserContext = React.createContext<UserState>({} as UserState);
 
 export const useUser = (): UserState => React.useContext(UserContext);
 
-export const UserProvider: React.FC = (props) => {
+const twitterKey = "@chronicle/twitter";
+
+export const UserProvider: React.FC = props => {
   const router = useRouter();
   const [userResult, setUserResult] = React.useState<UserResult>({
     loading: true,
     error: null,
     user: null,
   });
+  const [cameFromTwitter, setCameFromTwitter] = React.useState(false);
 
   const onChange = (user: firebase.User) => {
     setUserResult({
@@ -54,7 +59,7 @@ export const UserProvider: React.FC = (props) => {
     });
 
     if (user != null) {
-      Sentry.configureScope((scope) => {
+      Sentry.configureScope(scope => {
         scope.setUser({
           id: user.uid,
           email: user.email,
@@ -78,6 +83,16 @@ export const UserProvider: React.FC = (props) => {
 
   React.useEffect(() => {
     (async () => {
+      const result = await getItem(twitterKey, false);
+      clearItem(twitterKey);
+      if (result) {
+        setCameFromTwitter(true);
+      }
+    })();
+  }, []);
+
+  React.useEffect(() => {
+    (async () => {
       const result = await firebase.auth().getRedirectResult();
       if (
         result.user != null &&
@@ -85,6 +100,8 @@ export const UserProvider: React.FC = (props) => {
       ) {
         router.push("/journal");
       }
+
+      setCameFromTwitter(false);
     })();
   });
 
@@ -92,6 +109,7 @@ export const UserProvider: React.FC = (props) => {
     firebase.auth().signInWithEmailAndPassword(email, password);
 
   const loginWithTwitter = async () => {
+    await saveItem(twitterKey, true);
     const provider = new firebase.auth.TwitterAuthProvider();
     await firebase.auth().signInWithRedirect(provider);
   };
@@ -103,6 +121,7 @@ export const UserProvider: React.FC = (props) => {
 
   const value: UserState = {
     ...userResult,
+    cameFromTwitter,
     login,
     loginWithTwitter,
     logout,

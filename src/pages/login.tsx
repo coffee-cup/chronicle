@@ -37,7 +37,14 @@ const Login = () => {
       await login(email, password);
       router.push("/journal");
     } catch (e) {
-      setError(e.message ?? "error logging in");
+      console.log(e);
+      if (e.code === "auth/wrong-password") {
+        setError("Invalid password");
+      } else if (e.code === "auth/user-not-found") {
+        setError("Account credentials invalid");
+      } else {
+        setError(e.message ?? "Error logging in");
+      }
     }
   });
 

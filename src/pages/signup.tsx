@@ -37,7 +37,7 @@ const Signup = () => {
       await createAccount(email, password);
       router.push("/journal");
     } catch (e) {
-      setError(e.message ?? "error logging in");
+      setError(e.message ?? "Error signing up");
     }
   });
 

@@ -60,6 +60,13 @@ const Faq = () => {
             </Styled.p>
           </Question>
 
+          <Question title="How do I export my journal?">
+            <Styled.p>
+              There is an option to export your journal to Markdown and JSON
+              formats at <Link href="/profile">/profile</Link>.
+            </Styled.p>
+          </Question>
+
           <Question title="Where can I give feedback and request features?">
             <Styled.p>
               Feedback and feature requests are encouraged! Please tweet at or

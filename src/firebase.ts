@@ -22,5 +22,9 @@ export const config =
       };
 
 if (!firebase.apps.length) {
-  firebase.initializeApp(config);
+  try {
+    firebase.initializeApp(config);
+  } catch (e) {
+    console.error(e);
+  }
 }

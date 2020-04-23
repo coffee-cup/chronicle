@@ -3,7 +3,7 @@ import firebase from "firebase/app";
 export const config =
   process.env.NODE_ENV === "development"
     ? {
-        apiKey: "AIzaSyA4mkZcmNjSoNm0Vop3iGNzytGmg_WbSSo",
+        apiKey: process.env.FIREBASE_API_KEY,
         authDomain: "chronicle-dev-asdf.firebaseapp.com",
         databaseURL: "https://chronicle-dev-asdf.firebaseio.com",
         projectId: "chronicle-dev-asdf",
@@ -12,7 +12,7 @@ export const config =
         appId: "1:917335616719:web:1eb737f17fa6282d469bba",
       }
     : {
-        apiKey: "AIzaSyBbip1PzscwdE0De_l9FCB3yTggVtT76BM",
+        apiKey: process.env.FIREBASE_API_KEY,
         authDomain: "chronicle-e42f2.firebaseapp.com",
         databaseURL: "https://chronicle-e42f2.firebaseio.com",
         projectId: "chronicle-e42f2",
@@ -22,5 +22,9 @@ export const config =
       };
 
 if (!firebase.apps.length) {
-  firebase.initializeApp(config);
+  try {
+    firebase.initializeApp(config);
+  } catch (e) {
+    console.error(e);
+  }
 }

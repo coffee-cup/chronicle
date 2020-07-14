@@ -10,6 +10,13 @@ Lightweight journaling app where you record highlights of your day. Available at
 
 This is a [Next.js](https://nextjs.org/) app.
 
+Copy example env and provide real values
+
+```bash
+cp .env.example .env
+vi .env
+```
+
 Run the development server with
 
 ```bash

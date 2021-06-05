@@ -24,7 +24,7 @@
     "jest": "^25.2.4",
     "localforage": "^1.9.0",
     "lodash": "^4.17.15",
-    "next": "9.5.4",
+    "next": "10.2.3",
     "next-compose-plugins": "^2.2.1",
     "next-pwa": "^2.3.1",
     "next-seo": "^4.4.0",

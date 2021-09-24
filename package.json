@@ -13,7 +13,7 @@
     "@sentry/browser": "^5.15.4",
     "@sentry/node": "^5.15.4",
     "@styled-system/css": "^5.1.5",
-    "@theme-ui/presets": "^0.3.0",
+    "@theme-ui/presets": "^0.11.3",
     "@zeit/next-source-maps": "0.0.4-canary.1",
     "babel-jest": "^25.2.4",
     "copy-to-clipboard": "^3.3.1",

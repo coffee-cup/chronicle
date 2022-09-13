@@ -17,7 +17,7 @@
     "@zeit/next-source-maps": "0.0.4-canary.1",
     "babel-jest": "^25.2.4",
     "copy-to-clipboard": "^3.3.1",
-    "date-fns": "^2.11.0",
+    "date-fns": "^2.29.3",
     "fathom-client": "^3.0.0",
     "firebase": "^7.10.0",
     "immer": "^6.0.2",

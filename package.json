@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@emotion/styled": "^10.0.27",
-    "@sentry/browser": "^5.15.4",
+    "@sentry/browser": "^7.26.0",
     "@sentry/node": "^5.15.4",
     "@styled-system/css": "^5.1.5",
     "@theme-ui/presets": "^0.3.0",
